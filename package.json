@@ -1,5 +1,6 @@
 {
   "name": "astro-pure-blog",
+  "description": "A minimal, accessible and SEO-friendly Astro blog theme",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
