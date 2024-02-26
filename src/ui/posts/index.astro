@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { formatDateWithYYYYMM } from "@utils/formatDate";
+
+export interface Props {
+  posts: CollectionEntry<"blog">[];
+}
+
+const { posts } = Astro.props;
+---
+
+<main>
+  <h1
+    class="inline-block py-24 text-2xl font-semibold origin-center hover:scale-105 transition-all"
+  >
+    BLOG
+  </h1>
+  <ul>
+    {
+      posts.map(({ slug, data }) => (
+        <li class="group flex gap-4 py-2">
+          <span class="text-gray-400">
+            {formatDateWithYYYYMM(data.modDatetime ?? data.pubDatetime)}
+          </span>
+          <a
+            class="group-hover:underline underline-offset-4 font-thin decoration-gray-600 transition-all cursor-pointer"
+            style=""
+            href={`/posts/${slug}`}
+          >
+            {slug}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</main>

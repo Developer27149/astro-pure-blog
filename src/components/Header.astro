@@ -1,0 +1,40 @@
+---
+import { SiteConfig } from "@config";
+---
+
+<header class="flex gap-2 items-center text-sm">
+  <a href="/" class="pr-4">{SiteConfig.author}:</a>
+  <a href="/posts">Posts</a>
+  <span class="scale-80 opacity-80">/</span>
+  <a href="/projects">Projects</a>
+  <span class="scale-80 opacity-80">/</span>
+  <a href="/weekly">weekly</a>
+  <span class="scale-80 opacity-80">/</span>
+  <a href="/search" class="i-mdi-magnify"></a>
+  <span class="scale-80 opacity-80">/</span>
+  <a href="/rss.xml" class="i-mdi-rss-box"></a>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const header = document.querySelector("header");
+    const links = header?.querySelectorAll("a");
+    links?.forEach((link) => {
+      console.log(link.href, window.location.href);
+      if (link.href === window.location.href) {
+        link.classList.add("primary-text");
+      }
+    });
+  });
+</script>
+
+<style lang="scss">
+  header > a,
+  header > span {
+    color: var(--secondary-text, #6b7280);
+  }
+  header > a.primary-text,
+  header > a:hover {
+    color: var(--primary-text, #2563eb);
+  }
+</style>

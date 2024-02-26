@@ -1,0 +1,13 @@
+---
+import { getCollection } from "astro:content";
+import getSortedPosts from "@utils/getSortedPosts";
+import DefaultLayout from "@layouts/default.astro";
+import Posts from "@ui/posts/index.astro";
+const posts = await getCollection("blog");
+// just get the first 100 posts
+const sortedPosts = getSortedPosts(posts).slice(0, 100);
+---
+
+<DefaultLayout>
+  <Posts posts={sortedPosts} />
+</DefaultLayout>
