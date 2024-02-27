@@ -1,0 +1,39 @@
+---
+import type { CollectionEntry } from "astro:content";
+import DefaultLayout from "@layouts/default.astro";
+const { post } = Astro.props as {
+  post: CollectionEntry<"blog">;
+};
+
+const { data } = post;
+const { Content } = await post.render();
+---
+
+<DefaultLayout>
+  <h1 class="content-title">{data.title}</h1>
+  <article id="content">
+    <Content />
+  </article>
+</DefaultLayout>
+
+<style lang="scss">
+  .content-title {
+    margin: 48px 0;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  #content {
+    p {
+      line-height: 26px;
+      text-indent: 2rem;
+    }
+    ul {
+      padding-left: 2rem;
+      list-style: disc;
+    }
+    pre.astro-code {
+      margin: 24px 0;
+      padding: 6px;
+    }
+  }
+</style>

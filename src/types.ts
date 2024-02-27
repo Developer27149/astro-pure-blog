@@ -9,6 +9,7 @@ export type Site = {
   enableDarkMode: boolean;
   postPerPage: number;
   scheduledPostMargin: number; // 预定发布的时间
+  contact: Record<string, string>;
 };
 
 export type SocialObject = {

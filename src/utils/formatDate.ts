@@ -1,4 +1,6 @@
+import { format } from "date-fns";
+
 export const formatDateWithYYYYMM = (date: Date) => {
   const dateObj = new Date(date);
-  return `${dateObj.getFullYear()} · ${dateObj.getMonth() + 1}`;
+  return format(dateObj, "yyyy/MM/dd");
 };

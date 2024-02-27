@@ -9,4 +9,10 @@ export const SiteConfig: Site = {
   enableDarkMode: true,
   postPerPage: 10,
   scheduledPostMargin: 15 * 60 * 1000,
+  contact: {
+    email: "rivenqinyy@gmail.com",
+    twitter: "https://twitter.com/miaocai0",
+  },
 };
+
+

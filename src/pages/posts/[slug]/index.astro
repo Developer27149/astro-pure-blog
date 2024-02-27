@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+import getSortedPosts from "@utils/getSortedPosts";
+import PostDetail from "../../../components/PostDetail.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", (item) => !item.data.draft);
+  const postResult = posts.map((post) => {
+    return {
+      params: {
+        slug: post.slug,
+      },
+      props: {
+        post,
+      },
+    };
+  });
+  return postResult;
+}
+
+const { slug } = Astro.params;
+const { post } = Astro.props;
+
+const posts = await getCollection("blog", (item) => !item.data.draft);
+const sortedPost = getSortedPosts(posts.filter((p) => p.slug !== slug));
+const recentThreePosts = sortedPost.slice(0, 3);
+---
+
+<div>
+  <PostDetail post={post} />
+  <ul>
+    {
+      recentThreePosts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
