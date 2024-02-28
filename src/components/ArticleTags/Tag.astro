@@ -1,0 +1,16 @@
+---
+const { tagName } = Astro.props;
+
+interface Props {
+  tagName: string;
+}
+---
+
+<a
+  class="hover:underline underline-offset-2 transition-all"
+  href={`/tags/${tagName.replaceAll(" ", "-")}`}
+  class="inline-block"
+>
+  <span class="opacity-80">#</span>vbgcx
+  {tagName}
+</a>

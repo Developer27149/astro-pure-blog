@@ -1,16 +1,31 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import DefaultLayout from "@layouts/default.astro";
+import ArticleTags from "@components/ArticleTags/index.astro";
 const { post } = Astro.props as {
   post: CollectionEntry<"blog">;
 };
 
-const { data } = post;
+const {
+  data: {
+    title,
+    author,
+    description,
+    ogImage,
+    canonical,
+    tags,
+    pubDatetime,
+    modDatetime,
+  },
+} = post;
 const { Content } = await post.render();
 ---
 
-<DefaultLayout>
-  <h1 class="content-title">{data.title}</h1>
+<DefaultLayout transition:animate="slide">
+  <!-- Title -->
+  <h1 class="text-4xl py-8">{title}</h1>
+  <!-- Tags -->
+  <ArticleTags tags={tags}/>
   <article id="content">
     <Content />
   </article>
@@ -23,17 +38,5 @@ const { Content } = await post.render();
     font-weight: 600;
   }
   #content {
-    p {
-      line-height: 26px;
-      text-indent: 2rem;
-    }
-    ul {
-      padding-left: 2rem;
-      list-style: disc;
-    }
-    pre.astro-code {
-      margin: 24px 0;
-      padding: 6px;
-    }
   }
 </style>

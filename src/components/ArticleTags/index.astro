@@ -1,0 +1,20 @@
+---
+import Tag from "./Tag.astro";
+const { tags } = Astro.props;
+
+interface Props {
+  tags: string[];
+}
+---
+
+<>
+  {
+    tags?.length && (
+      <ul class="flex gap-4 mb-4 italic animate-flip-up">
+        {tags.map((tag) => (
+          <Tag tagName={tag} />
+        ))}
+      </ul>
+    )
+  }
+</>

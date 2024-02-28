@@ -23,5 +23,7 @@ module.exports = {
       // collections: getIconCollections("all"),
       // and the more recommended way is to use `dynamicIconsPlugin`, see below.
     }),
+    require("tailwindcss-animated"),
   ],
+  darkMode: "class",
 };
