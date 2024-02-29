@@ -1,0 +1,85 @@
+---
+import { SiteConfig } from "@config";
+import MenuIcons from "./MenuIcons.astro";
+interface Props {
+  activeNav: "posts" | "projects" | "weekly";
+}
+
+const { activeNav } = Astro.props;
+---
+
+<header class="flex gap-2 items-center text-sm md:text-[18px] relative">
+  <a href="/" class="pr-4">@{SiteConfig.author}:</a>
+  <a
+    href="/posts"
+    class:list={[
+      "hover:opacity-100 transition-all",
+      activeNav === "posts" ? "active-nav" : "opacity-70",
+    ]}>Posts</a
+  >
+  <span class="scale-50 opacity-50">/</span>
+  <a
+    href="/projects"
+    class:list={[
+      "hover:opacity-100 transition-all",
+      activeNav === "projects" ? "active-nav" : "opacity-70",
+    ]}>Projects</a
+  >
+  <span class="scale-50 opacity-50">/</span>
+  <a
+    href="/weekly"
+    class:list={[
+      "hover:opacity-100 transition-all",
+      activeNav === "weekly" ? "active-nav" : "opacity-70",
+    ]}>weekly</a
+  >
+  <div class="ml-auto flex-nowrap items-center gap-2 hidden sm:flex">
+    <MenuIcons />
+  </div>
+
+  <div
+    class="absolute top-[100%] w-full flex justify-center pt-8 text-[20px] gap-4 sm:hidden"
+  >
+    <MenuIcons />
+  </div>
+</header>
+
+<script is:inline>
+  const getTheme = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  };
+  const theme = getTheme();
+
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
+  }
+  window.localStorage.setItem("theme", theme);
+  // add event listener to toggle theme
+  window.addEventListener("load", () => {
+    document.querySelectorAll(".theme-toggle")?.forEach((el) => {
+      el?.addEventListener("click", function () {
+        const currentTheme = document.documentElement.classList.contains("dark")
+          ? "dark"
+          : "light";
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        document.documentElement.classList.remove(currentTheme);
+        document.documentElement.classList.add(newTheme);
+        window.localStorage.setItem("theme", newTheme);
+      });
+    });
+  });
+</script>
+
+<style>
+  .active-nav {
+    @apply opacity-100 underline underline-offset-2;
+  }
+</style>

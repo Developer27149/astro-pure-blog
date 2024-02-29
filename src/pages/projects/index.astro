@@ -7,10 +7,9 @@ import Header from "@components/Header/index.astro";
 const posts = await getCollection("blog");
 // just get the first 100 posts
 const sortedPosts = getSortedPosts(posts).slice(0, 100);
-
 ---
 
 <DefaultLayout>
-  <Header activeNav="posts"/>
+  <Header activeNav="projects" />
   <Posts posts={sortedPosts} />
 </DefaultLayout>

@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { formatDateWithYYYYMM } from "@utils/formatDate";
+import { format } from "date-fns";
 
 export interface Props {
   posts: CollectionEntry<"blog">[];
@@ -17,10 +17,19 @@ const { posts } = Astro.props;
   </h1>
   <ul>
     {
-      posts.map(({ slug, data }) => (
-        <li class="group flex gap-4 py-2">
-          <span class="text-gray-600 border border-gray-600 rounded-sm  p-[2px] px-[4px]">
-            {formatDateWithYYYYMM(data.modDatetime ?? data.pubDatetime)}
+      posts.map(({ slug, data }, idx) => (
+        <li
+          class="group flex items-start gap-6 md:gap-8 py-2 animate-fade-left"
+          style={`animation-delay:${idx * 70}ms`}
+        >
+          <span class=" hidden md:inline-block  border border-gray-600 rounded-sm  p-[2px] px-[4px] skew-x-6">
+            {format(
+              new Date(data.modDatetime ?? data.pubDatetime),
+              "yyyy/MM/dd"
+            )}
+          </span>
+          <span class="md:hidden inline-block border border-gray-600 shadow shadow-gray-900 rounded-sm p-[2px] px-[4px] skew-x-6">
+            {format(new Date(data.modDatetime ?? data.pubDatetime), "yyyy/MM")}
           </span>
           <a
             class="group-hover:underline underline-offset-4 font-thin decoration-gray-600 transition-all cursor-pointer"

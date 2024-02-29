@@ -1,6 +1,5 @@
 ---
 import { SiteConfig } from "@config";
-import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import "@fontsource/jost";
 ---
@@ -12,10 +11,8 @@ import "@fontsource/jost";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{SiteConfig.description}</title>
   </head>
-  <body
-    
+  <body    
   >
-    <Header />
     <slot />
     <Footer />
   </body>
@@ -23,7 +20,7 @@ import "@fontsource/jost";
 
 <style is:global>
 body {
-  @apply w-[768px] py-12 px-4 md:px-0 max-w-[100vw] min-h-screen mx-auto;
+  @apply w-[768px] py-12 px-4 md:px-0 max-w-[100vw] sm:max-w-[80vw] min-h-screen overflow-x-hidden mx-auto;
   @apply bg-gray-50 dark:bg-[#161616] dark:text-white text-gray-800;
 }
 </style>

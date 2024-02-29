@@ -2,6 +2,8 @@
 import type { CollectionEntry } from "astro:content";
 import DefaultLayout from "@layouts/default.astro";
 import ArticleTags from "@components/ArticleTags/index.astro";
+import MenuIcons from "./Header/MenuIcons.astro";
+import { SiteConfig } from "@config";
 const { post } = Astro.props as {
   post: CollectionEntry<"blog">;
 };
@@ -21,7 +23,14 @@ const {
 const { Content } = await post.render();
 ---
 
-<DefaultLayout transition:animate="slide">
+<DefaultLayout>
+  <div class="flex justify-between items-center">
+    <span>@{SiteConfig.author}</span>
+    <div class="flex gap-4">
+      <i class="i-mdi-keyboard-backspace" id="_back_"></i>
+      <MenuIcons />
+    </div>
+  </div>
   <!-- Title -->
   <h1 class="text-4xl py-8">{title}</h1>
   <!-- Tags -->
@@ -40,3 +49,13 @@ const { Content } = await post.render();
   #content {
   }
 </style>
+
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+  const back = document.getElementById('_back_');
+  back.addEventListener('click', () => {
+    window.history.back();
+  });
+});
+</script>
