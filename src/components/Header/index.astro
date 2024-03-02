@@ -33,7 +33,7 @@ const { activeNav } = Astro.props;
       activeNav === "weekly" ? "active-nav" : "opacity-70",
     ]}>weekly</a
   >
-  <div class="ml-auto flex-nowrap items-center gap-2 hidden sm:flex">
+  <div class="ml-auto flex-nowrap items-center gap-4 hidden sm:flex">
     <MenuIcons />
   </div>
 
@@ -43,40 +43,6 @@ const { activeNav } = Astro.props;
     <MenuIcons />
   </div>
 </header>
-
-<script is:inline>
-  const getTheme = () => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
-    }
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
-    return "light";
-  };
-  const theme = getTheme();
-
-  if (theme === "light") {
-    document.documentElement.classList.remove("dark");
-  } else {
-    document.documentElement.classList.add("dark");
-  }
-  window.localStorage.setItem("theme", theme);
-  // add event listener to toggle theme
-  window.addEventListener("load", () => {
-    document.querySelectorAll(".theme-toggle")?.forEach((el) => {
-      el?.addEventListener("click", function () {
-        const currentTheme = document.documentElement.classList.contains("dark")
-          ? "dark"
-          : "light";
-        const newTheme = currentTheme === "dark" ? "light" : "dark";
-        document.documentElement.classList.remove(currentTheme);
-        document.documentElement.classList.add(newTheme);
-        window.localStorage.setItem("theme", newTheme);
-      });
-    });
-  });
-</script>
 
 <style>
   .active-nav {

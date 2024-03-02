@@ -1,7 +1,31 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import { SiteConfig } from "./src/config";
+import react from "@astrojs/react";
+import remarkToc from "remark-toc";
+import remarkCollapse from "remark-collapse";
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [tailwind()],
+  site: SiteConfig.website,
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
+    react(),
+  ],
+  markdown: {
+    rehypePlugins: [
+      remarkToc,
+      [
+        remarkCollapse,
+        {
+          test: "Table of contents",
+        },
+      ],
+    ],
+    shikiConfig: {
+      theme: "dracula",
+    },
+  },
 });

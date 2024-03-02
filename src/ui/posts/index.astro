@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { format } from "date-fns";
-
+import {slug as ghSlug } from 'github-slugger';
 export interface Props {
   posts: CollectionEntry<"blog">[];
 }
@@ -21,6 +21,7 @@ const { posts } = Astro.props;
         <li
           class="group flex items-start gap-6 md:gap-8 py-2 animate-fade-left"
           style={`animation-delay:${idx * 70}ms`}
+          transition:name={ghSlug(slug)}
         >
           <span class=" hidden md:inline-block  border border-gray-600 rounded-sm  p-[2px] px-[4px] skew-x-6">
             {format(

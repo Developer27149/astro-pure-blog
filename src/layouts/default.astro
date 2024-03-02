@@ -2,17 +2,22 @@
 import { SiteConfig } from "@config";
 import Footer from "@components/Footer.astro";
 import "@fontsource/jost";
+import { ViewTransitions } from 'astro:transitions';
+import "@styles/base.css";
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="theme" content="light">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{SiteConfig.description}</title>
+    <script is:inline src="/toggle-theme.js"></script>
   </head>
   <body    
   >
+    <ViewTransitions />
     <slot />
     <Footer />
   </body>
@@ -21,6 +26,6 @@ import "@fontsource/jost";
 <style is:global>
 body {
   @apply w-[768px] py-12 px-4 md:px-0 max-w-[100vw] sm:max-w-[80vw] min-h-screen overflow-x-hidden mx-auto;
-  @apply bg-gray-50 dark:bg-[#161616] dark:text-white text-gray-800;
+  @apply bg-gray-50 dark:bg-[#1c1b1b] dark:text-[#eeeeee99] text-gray-800;
 }
 </style>
