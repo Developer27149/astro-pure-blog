@@ -13,6 +13,20 @@ module.exports = {
       },
     },
   },
+  extends: {
+    typography: {
+      DEFAULT: {
+        css: {
+          pre: {
+            color: false,
+          },
+          code: {
+            color: false,
+          },
+        },
+      },
+    },
+  },
   plugins: [
     iconsPlugin({
       // Select the icon collections you want to use
@@ -24,6 +38,7 @@ module.exports = {
       // and the more recommended way is to use `dynamicIconsPlugin`, see below.
     }),
     require("tailwindcss-animated"),
+    require("@tailwindcss/typography"),
   ],
   darkMode: "class",
 };

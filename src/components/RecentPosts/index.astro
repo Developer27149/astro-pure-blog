@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { slug as ghSlug } from "github-slugger";
+
+interface Props {
+  recentPosts: CollectionEntry<"blog">[];
+}
+
+const { recentPosts } = Astro.props;
+---
+
+<div>
+  {
+    recentPosts.map((post) => (
+      <div>
+        <a
+          transition:name={ghSlug(post.data.title)}
+          href={`/blog/${post.slug}`}
+        >
+          {post.data.title}
+        </a>
+        <p>{post.data?.description}</p>
+      </div>
+    ))
+  }
+</div>

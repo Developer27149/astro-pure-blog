@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import getSortedPosts from "@utils/getSortedPosts";
 import PostDetail from "../../../components/PostDetail.astro";
-import {slug as ghSlug} from 'github-slugger';
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", (item) => !item.data.draft);
@@ -24,20 +23,7 @@ const { post } = Astro.props;
 
 const posts = await getCollection("blog", (item) => !item.data.draft);
 const sortedPost = getSortedPosts(posts.filter((p) => p.slug !== slug));
-const recentThreePosts = sortedPost.slice(0, 3);
+const recentPosts = sortedPost.slice(0, 3);
 ---
 
-<div>
-  <PostDetail post={post} />
-  <ul>
-    {
-      recentThreePosts.map((post) => (
-        <li>
-          <a 
-          transition:name={ghSlug(post.data.title)}
-          href={`/blog/${post.slug}`}>{post.data.title}</a>
-        </li>
-      ))
-    }
-  </ul>
-</div>
+<PostDetail post={post} recentPosts={recentPosts}/>

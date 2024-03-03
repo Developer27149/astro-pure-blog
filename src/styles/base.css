@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 
+.prose {
+  @apply prose-h2:text-[#d7a9ffad]
+} */
+
+@layer base {
+  body {
+    @apply w-[768px] py-12 px-4 md:px-0 max-w-[100vw] sm:max-w-[80vw] min-h-screen overflow-x-hidden mx-auto;
+    @apply bg-gray-50 dark:bg-[#1e1f28] dark:text-[#eeeeee99] text-gray-800;
+  }
+  .prose {
+    @apply prose-headings:!mb-6 sm:prose-headings:!mb-12;
+    @apply prose-blockquote:!my-6 sm:prose-blockquote:!my-12 prose-blockquote:!text-gray-500;
+    @apply prose-code:bg-sky-50 prose-code:!text-sky-600 prose-code:!p-[4px] prose-code:!rounded-sm prose-code:before:!hidden prose-code:after:!hidden;
+    @apply prose-code:dark:!bg-[#282A36];
+  }
+}
+
+.astro-code {
+  @apply !text-[12px] sm:!text-[13px] md:!text-[14px];
+}
+
+h1 {
+  @apply text-4xl font-bold text-center md:text-left my-8 text-black dark:text-white;
+}

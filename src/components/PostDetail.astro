@@ -3,61 +3,105 @@ import type { CollectionEntry } from "astro:content";
 import DefaultLayout from "@layouts/default.astro";
 import ArticleTags from "@components/ArticleTags/index.astro";
 import MenuIcons from "./Header/MenuIcons.astro";
-import {slug as ghSlug} from 'github-slugger';
+import { slug as ghSlug } from "github-slugger";
 import { SiteConfig } from "@config";
+import { generatePostDateTime } from "@utils/formatDate";
+import RecentPosts from "@components/RecentPosts/index.astro";
+
 const { post } = Astro.props as {
   post: CollectionEntry<"blog">;
+  recentPosts: CollectionEntry<"blog">[];
 };
 
 const {
   data: {
     title,
-    author,
     description,
     ogImage,
     canonical,
     tags,
     pubDatetime,
     modDatetime,
+    author
   },
 } = post;
+
+const ogImageUrl = typeof ogImage === "string" ? ogImage : ogImage?.src;
+
+const ogUrl = new URL(
+  ogImageUrl ?? `/posts/${ghSlug(title)}.png`,
+  Astro.url.origin
+).href;
+
+const layoutProps = {
+  title: `Blog - ${title}`,
+  description,
+  ogImage: ogUrl,
+  canonical,
+  author,
+  pubDatetime,
+  modDatetime,
+}
 const { Content } = await post.render();
 ---
 
-<DefaultLayout>
-  <div class="flex justify-between items-center" >
+<DefaultLayout {...layoutProps}>
+  <div class="flex justify-between items-center">
     <span>@{SiteConfig.author}</span>
     <div class="flex gap-4">
-      <i class="i-mdi-keyboard-backspace" id="_back_"></i>
+      <i
+        class="i-mdi-keyboard-backspace cursor-pointer hover:scale-110 hover:text-orange-600 transition-all"
+        id="_back_"></i>
       <MenuIcons />
     </div>
   </div>
 
   <!-- Title -->
-  <h1 class="text-4xl py-8" transition:name={ghSlug(title)}>{title}</h1>
-  <!-- Tags -->
-  <ArticleTags tags={tags}/>
-  <article id="content">
+  <h1 class="text-4xl pt-8" transition:name={ghSlug(title)}>{title}</h1>
+  <div class="flex items-center gap-1">
+      <i class="i-mdi-calendar-month"></i>{modDatetime ? `Updated at: ${generatePostDateTime(modDatetime)}` : `Created at: ${
+        generatePostDateTime(pubDatetime)
+      }`}
+    </div>
+  <article
+    id="content"
+    class="prose lg:prose-xl dark:prose-invert prose-a:text-blue-600 hover:prose-a:text-blue-500"
+  >
     <Content />
   </article>
+
+  <!-- Tags -->
+  <ArticleTags tags={tags} />
+
+  <RecentPosts recentPosts={Astro.props.recentPosts} />
+
 </DefaultLayout>
 
-<style lang="scss">
-  .content-title {
-    margin: 48px 0;
-    font-size: 24px;
-    font-weight: 600;
-  }
-  #content {
-  }
-</style>
 
 
 <script is:inline>
-document.addEventListener('DOMContentLoaded', () => {
-  const back = document.getElementById('_back_');
-  back.addEventListener('click', () => {
-    window.history.back();
+  document.addEventListener("DOMContentLoaded", () => {
+    const back = document.getElementById("_back_");
+    back.addEventListener("click", () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = window.location.origin;
+      }
+    });
   });
-});
+
+  function addHeadingLinks() {
+    let headings = Array.from(document.querySelectorAll("h2, h3, h4, h5, h6"));
+    for (let heading of headings) {
+      heading.classList.add("group");
+      let link = document.createElement("a");
+      link.innerText = "#";
+      link.className = "heading-link hidden group-hover:inline-block ml-2";
+      link.href = "#" + heading.id;
+      link.ariaHidden = "true";
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
 </script>
