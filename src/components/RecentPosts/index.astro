@@ -9,18 +9,30 @@ interface Props {
 const { recentPosts } = Astro.props;
 ---
 
-<div>
-  {
-    recentPosts.map((post) => (
-      <div>
-        <a
-          transition:name={ghSlug(post.data.title)}
-          href={`/blog/${post.slug}`}
-        >
-          {post.data.title}
-        </a>
-        <p>{post.data?.description}</p>
-      </div>
-    ))
-  }
-</div>
+<>
+  <h3 class="text-gray-900 font-semibold text-xl mb-4">Recent Blog</h3>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {
+      recentPosts.map((post) => (
+        <div class="relative rounded-md shadow shadow-gray-100 dark:shadow-sky-800 overflow-hidden group">
+          <a
+            transition:name={ghSlug(post.data.title)}
+            href={`/posts/${post.slug}`}
+          >
+            <img
+              src={
+                typeof post.data?.ogImage === "string"
+                  ? post.data.ogImage
+                  : "https://user-images.githubusercontent.com/53733092/215771435-25408246-2309-4f8b-a781-1f3d93bdf0ec.png"
+              }
+              class="object-cover w-full h-48 group-hover:scale-110 transition-transform"
+            />
+            <p class="absolute inset-x-0 bottom-1 bg-gray-900/10 text-white text-center line-clamp-3">
+              {post.data.title}
+            </p>
+          </a>
+        </div>
+      ))
+    }
+  </div>
+</>

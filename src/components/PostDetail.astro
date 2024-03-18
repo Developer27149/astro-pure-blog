@@ -5,7 +5,7 @@ import ArticleTags from "@components/ArticleTags/index.astro";
 import MenuIcons from "./Header/MenuIcons.astro";
 import { slug as ghSlug } from "github-slugger";
 import { SiteConfig } from "@config";
-import { generatePostDateTime } from "@utils/formatDate";
+import { calcRelativeDate, generatePostDateTime } from "@utils/formatDate";
 import RecentPosts from "@components/RecentPosts/index.astro";
 
 const { post } = Astro.props as {
@@ -22,7 +22,7 @@ const {
     tags,
     pubDatetime,
     modDatetime,
-    author
+    author,
   },
 } = post;
 
@@ -41,16 +41,18 @@ const layoutProps = {
   author,
   pubDatetime,
   modDatetime,
-}
+};
 const { Content } = await post.render();
 ---
 
 <DefaultLayout {...layoutProps}>
   <div class="flex justify-between items-center">
-    <span>@{SiteConfig.author}</span>
+    <a href="/" class="text-black dark:text-sky-500 font-semibold text-xl"
+      >@{SiteConfig.author}</a
+    >
     <div class="flex gap-4">
       <i
-        class="i-mdi-keyboard-backspace cursor-pointer hover:scale-110 hover:text-orange-600 transition-all"
+        class="i-mdi-keyboard-backspace cursor-pointer hover:scale-110 text-sky-400 transition-all"
         id="_back_"></i>
       <MenuIcons />
     </div>
@@ -58,11 +60,11 @@ const { Content } = await post.render();
 
   <!-- Title -->
   <h1 class="text-4xl pt-8" transition:name={ghSlug(title)}>{title}</h1>
-  <div class="flex items-center gap-1">
-      <i class="i-mdi-calendar-month"></i>{modDatetime ? `Updated at: ${generatePostDateTime(modDatetime)}` : `Created at: ${
-        generatePostDateTime(pubDatetime)
-      }`}
-    </div>
+  <div class="flex items-center gap-1 mb-4">
+    <i class="i-mdi-calendar-month"></i>{
+      `更新于 ${calcRelativeDate(modDatetime ?? pubDatetime)}`
+    }
+  </div>
   <article
     id="content"
     class="prose lg:prose-xl dark:prose-invert prose-a:text-blue-600 hover:prose-a:text-blue-500"
@@ -72,12 +74,14 @@ const { Content } = await post.render();
 
   <!-- Tags -->
   <ArticleTags tags={tags} />
-
   <RecentPosts recentPosts={Astro.props.recentPosts} />
-
+  <button
+    id="back-to-top"
+    class="fixed bottom-4 right-4 bg-skin-base opacity-35 hover:opacity-100 text-white p-2 rounded-full shadow-lg hover:shadow-xl transition-all z-50"
+  >
+    <i class="i-mdi-arrow-up-circle-outline text-2xl"></i>
+  </button>
 </DefaultLayout>
-
-
 
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
@@ -104,4 +108,67 @@ const { Content } = await post.render();
     }
   }
   addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    let copyButtonLabel = "Copy";
+    let codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (let codeBlock of codeBlocks) {
+      let wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      let copyButton = document.createElement("button");
+      copyButton.className =
+        "bg-green-500 text-white absolute right-1 top-1 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      let code = block.querySelector("code");
+      let text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+    document.addEventListener("scroll", () => {
+      let backToTopButton = document.querySelector("#back-to-top");
+      if (
+        document.body.scrollTop > 100 ||
+        document.documentElement.scrollTop > 100
+      ) {
+        backToTopButton.style.display = "block";
+      } else {
+        backToTopButton.style.display = "none";
+      }
+    });
+  }
+  backToTop();
 </script>

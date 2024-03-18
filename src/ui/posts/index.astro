@@ -1,7 +1,8 @@
 ---
+import { calcRelativeDate } from "@utils/formatDate";
 import type { CollectionEntry } from "astro:content";
 import { format } from "date-fns";
-import {slug as ghSlug } from 'github-slugger';
+import { slug as ghSlug } from "github-slugger";
 export interface Props {
   posts: CollectionEntry<"blog">[];
 }
@@ -19,21 +20,18 @@ const { posts } = Astro.props;
     {
       posts.map(({ slug, data }, idx) => (
         <li
-          class="group flex items-start gap-6 md:gap-8 py-2 animate-fade-left"
+          class="group flex items-center gap-12 md:gap-8 py-2 animate-fade-left mb-2"
           style={`animation-delay:${idx * 70}ms`}
           transition:name={ghSlug(slug)}
         >
-          <span class=" hidden md:inline-block  border border-gray-600 rounded-sm  p-[2px] px-[4px] skew-x-6">
-            {format(
-              new Date(data.modDatetime ?? data.pubDatetime),
-              "yyyy/MM/dd"
-            )}
+          <span class="hidden md:inline-block rounded-sm p-[2px] px-[4px] text-sm min-w-[100px]">
+            {calcRelativeDate(data.modDatetime ?? data.pubDatetime)}
           </span>
           <span class="md:hidden inline-block border border-gray-600 shadow shadow-gray-900 rounded-sm p-[2px] px-[4px] skew-x-6">
             {format(new Date(data.modDatetime ?? data.pubDatetime), "yyyy/MM")}
           </span>
           <a
-            class="group-hover:underline underline-offset-4 font-thin decoration-gray-600 transition-all cursor-pointer"
+            class="group-hover:underline underline-offset-4 font-thin decoration-sky-200 transition-all cursor-pointer"
             style=""
             href={`/posts/${slug}`}
           >

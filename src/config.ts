@@ -13,6 +13,7 @@ export const SiteConfig: Site = {
   contact: {
     email: "rivenqinyy@gmail.com",
     twitter: "https://twitter.com/miaocai0",
+    github: "https://github.com/Developer27149",
   },
 };
 

@@ -15,8 +15,15 @@
   .prose {
     @apply prose-headings:!mb-6 sm:prose-headings:!mb-12;
     @apply prose-blockquote:!my-6 sm:prose-blockquote:!my-12 prose-blockquote:!text-gray-500;
-    @apply prose-code:bg-sky-50 prose-code:!text-sky-600 prose-code:!p-[4px] prose-code:!rounded-sm prose-code:before:!hidden prose-code:after:!hidden;
+    @apply prose-code:bg-sky-50 prose-code:!text-sky-400 prose-code:!p-[4px] prose-code:!rounded-sm prose-code:before:!hidden prose-code:after:!hidden;
     @apply prose-code:dark:!bg-[#282A36];
+  }
+  .prose details {
+    @apply inline-block cursor-pointer select-none text-sky-500 dark:text-sky-500 font-semibold;
+  }
+  .prose a {
+    @apply text-sky-400 underline-offset-4;
+    text-decoration: dashed underline;
   }
 }
 

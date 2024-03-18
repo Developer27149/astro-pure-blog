@@ -3,12 +3,14 @@ import socialIcons from "@assets/socialIcons";
 import { SiteConfig } from "@config";
 ---
 
-<footer class="text-sm pt-32">
+<footer class="text-sm pt-32 text-center md:text-left">
   <a
     href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
     class="underline underline-offset-2 pr-2"
   >
     CC BY-NC-SA 4.0
   </a>
-  2024 - PRESENT © <a href={SiteConfig.contact.twitter}>{}{SiteConfig.author}</a>
+  2024 - PRESENT © <a target="_blank" href={SiteConfig.contact.github}
+    >{}{SiteConfig.author}</a
+  >
 </footer>

@@ -4,7 +4,7 @@ pubDatetime: 2024-01-04T09:30:41.816Z
 title: AstroPaper 4.0
 slug: "astro-paper-v4"
 featured: true
-ogImage: ../../assets/images/AstroPaper-v4.png
+ogImage: https://images.unsplash.com/photo-1710587385080-6d520f9d9638?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHx8
 tags:
   - release
 description: "AstroPaper v4: ensuring a smoother and more feature-rich blogging experience."
