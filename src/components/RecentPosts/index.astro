@@ -10,11 +10,11 @@ const { recentPosts } = Astro.props;
 ---
 
 <>
-  <h3 class="text-gray-900 font-semibold text-xl mb-4">Recent Blog</h3>
+  <div class="font-semibold text-xl mb-4">Recent Blog</div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     {
       recentPosts.map((post) => (
-        <div class="relative rounded-md shadow shadow-gray-100 dark:shadow-sky-800 overflow-hidden group">
+        <div class="relative rounded-md overflow-hidden group">
           <a
             transition:name={ghSlug(post.data.title)}
             href={`/posts/${post.slug}`}
@@ -27,7 +27,10 @@ const { recentPosts } = Astro.props;
               }
               class="object-cover w-full h-48 group-hover:scale-110 transition-transform"
             />
-            <p class="absolute inset-x-0 bottom-1 bg-gray-900/10 text-white text-center line-clamp-3">
+            <p
+              class="absolute inset-x-1 bottom-1 bg-gray-900/10 text-white truncate text-center"
+              title={post.data.title}
+            >
               {post.data.title}
             </p>
           </a>

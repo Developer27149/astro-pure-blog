@@ -77,7 +77,7 @@ const { Content } = await post.render();
   <RecentPosts recentPosts={Astro.props.recentPosts} />
   <button
     id="back-to-top"
-    class="fixed bottom-4 right-4 bg-skin-base opacity-35 hover:opacity-100 text-white p-2 rounded-full shadow-lg hover:shadow-xl transition-all z-50"
+    class="fixed bottom-4 right-4 bg-skin-base opacity-35 hover:opacity-100 text-teal-400 p-2 rounded-full shadow-lg hover:shadow-xl transition-all z-50"
   >
     <i class="i-mdi-arrow-up-circle-outline text-2xl"></i>
   </button>
@@ -121,7 +121,7 @@ const { Content } = await post.render();
 
       let copyButton = document.createElement("button");
       copyButton.className =
-        "bg-green-500 text-white absolute right-1 top-1 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium";
+        "bg-green-500 text-white absolute right-1 top-1 transition-all opacity-50 hover:opacity-100 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium";
       copyButton.innerHTML = copyButtonLabel;
       codeBlock.setAttribute("tabindex", "0");
       codeBlock.appendChild(copyButton);
