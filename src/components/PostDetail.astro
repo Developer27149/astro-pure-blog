@@ -116,12 +116,13 @@ const { Content } = await post.render();
     let codeBlocks = Array.from(document.querySelectorAll("pre"));
 
     for (let codeBlock of codeBlocks) {
+      codeBlock.classList.add("group");
       let wrapper = document.createElement("div");
       wrapper.style.position = "relative";
 
       let copyButton = document.createElement("button");
       copyButton.className =
-        "bg-green-500 text-white absolute right-1 top-1 transition-all opacity-50 hover:opacity-100 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium";
+        "bg-green-500 text-white absolute right-1 top-1 transition-all opacity-0 group-hover:opacity-100 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium";
       copyButton.innerHTML = copyButtonLabel;
       codeBlock.setAttribute("tabindex", "0");
       codeBlock.appendChild(copyButton);

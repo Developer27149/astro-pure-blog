@@ -10,7 +10,9 @@ const { recentPosts } = Astro.props;
 ---
 
 <>
-  <div class="font-semibold text-xl mb-4">Recent Blog</div>
+  <div class="font-semibold text-2xl dark:text-teal-400 text-black mb-4">
+    Recent Blog
+  </div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     {
       recentPosts.map((post) => (
