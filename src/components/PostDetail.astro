@@ -7,6 +7,7 @@ import { slug as ghSlug } from "github-slugger";
 import { SiteConfig } from "@config";
 import { calcRelativeDate, generatePostDateTime } from "@utils/formatDate";
 import RecentPosts from "@components/RecentPosts/index.astro";
+import TimeAgo from "@components/TimeAgo";
 
 const { post } = Astro.props as {
   post: CollectionEntry<"blog">;
@@ -61,9 +62,8 @@ const { Content } = await post.render();
   <!-- Title -->
   <h1 class="text-4xl pt-8" transition:name={ghSlug(title)}>{title}</h1>
   <div class="flex items-center gap-1 mb-4">
-    <i class="i-mdi-calendar-month"></i>{
-      `更新于 ${calcRelativeDate(modDatetime ?? pubDatetime)}`
-    }
+    <i class="i-mdi-calendar-month"></i>
+    <TimeAgo client:only="react" date={modDatetime ?? pubDatetime} />
   </div>
   <article
     id="content"
