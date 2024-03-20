@@ -28,13 +28,14 @@ const { posts } = Astro.props;
           <span class="hidden md:inline-block rounded-sm p-[2px] px-[4px] text-sm min-w-[100px]">
             {calcRelativeDate(data.modDatetime ?? data.pubDatetime)}
           </span>
-          <span class="md:hidden inline-block border border-gray-600 shadow shadow-gray-900 rounded-sm p-[2px] px-[4px] skew-x-6">
+          <span class="md:hidden inline-block rounded-sm p-[2px] px-[4px] skew-x-6">
             {format(new Date(data.modDatetime ?? data.pubDatetime), "yyyy/MM")}
           </span>
           <a
             class="group-hover:underline underline-offset-4 font-thin decoration-sky-200 transition-all cursor-pointer dark:text-teal-300"
             style=""
             href={`/posts/${slug}`}
+            data-description={data.description}
           >
             {slug}
           </a>
@@ -43,3 +44,38 @@ const { posts } = Astro.props;
     }
   </ul>
 </main>
+<div
+  id="description-elem"
+  class="absolute z-[999] bg-gray-900 text-white dark:bg-gray-50 p-2 rounded-sm shadow dark:text-teal-400"
+>
+</div>
+
+<script is:inline>
+  const posts = document.querySelectorAll("main li:has(a[data-description])");
+  const descriptionElem = document.getElementById("description-elem");
+  posts.forEach((post) => {
+    const link = post.querySelector("a[data-description]");
+    post.addEventListener("mouseenter", () => {
+      const description = link.getAttribute("data-description");
+      // get mouse position
+      const { x, y } = link.getBoundingClientRect();
+      console.log(description);
+      descriptionElem.innerHTML = description;
+      descriptionElem.style.left = `${x}px`;
+      descriptionElem.style.top = `${y - 40}px`;
+      descriptionElem.classList.remove("hidden");
+    });
+    post.addEventListener("mousemove", () => {
+      const description = link.getAttribute("data-description");
+      const { x, y } = link.getBoundingClientRect();
+      console.log(description);
+      descriptionElem.innerHTML = description;
+      descriptionElem.style.left = `${x}px`;
+      descriptionElem.style.top = `${y - 40}px`;
+    });
+    post.addEventListener("mouseleave", () => {
+      descriptionElem.innerHTML = "";
+      descriptionElem.classList.add("hidden");
+    });
+  });
+</script>
