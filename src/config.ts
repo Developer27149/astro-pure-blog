@@ -3,6 +3,7 @@ import type { Site } from "types";
 export const SiteConfig: Site = {
   website: "https://astro.build",
   author: "Developer27149",
+  avatar: "https://avatars.githubusercontent.com/u/23721611?v=4",
   title: "AstroPureBlog",
   description: "AstroPureBlog is a blog template built with Astro.",
   ogImage:

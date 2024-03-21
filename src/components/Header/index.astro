@@ -9,9 +9,12 @@ const { activeNav } = Astro.props;
 ---
 
 <header class="flex gap-2 items-center text-sm md:text-[18px] relative">
-  <a href="/" class="pr-4 text-black font-semibold dark:text-sky-400"
-    >@{SiteConfig.author}</a
+  <div
+    class="p-1 bg-sky-100 dark:bg-sky-100/10 dark:text-gray-100 text-sky-900 overflow-hidden flex items-center rounded-l-full rounded-r-md gap-2 mr-4 pr-2 font-semibold"
   >
+    <img src={SiteConfig.avatar} class="w-6 h-6 rounded-full" />
+    <a href="/">{SiteConfig.author}</a>
+  </div>
   <a
     href="/posts"
     class:list={[
