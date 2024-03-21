@@ -3,14 +3,18 @@ import socialIcons from "@assets/socialIcons";
 import { SiteConfig } from "@config";
 ---
 
-<footer class="text-sm pt-32 text-center md:text-left">
+<footer
+  class="text-sm pt-32 text-center items-center flex gap-1 justify-center md:text-left pb-8 sm:pb-0"
+>
   <a
     href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
     class="underline underline-offset-2 pr-2"
   >
     CC BY-NC-SA 4.0
   </a>
-  2024 - PRESENT © <a target="_blank" href={SiteConfig.contact.github}
-    >{}{SiteConfig.author}</a
-  >
+  2024 - PRESENT © {SiteConfig.author}<a
+    target="_blank"
+    href={SiteConfig.contact.github}
+    class="hidden md:inline-block"></a>
+  <a href={SiteConfig.contact.twitter} class="i-mdi-twitter text-sky-500"></a>
 </footer>

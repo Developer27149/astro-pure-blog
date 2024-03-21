@@ -1,3 +1,7 @@
+---
+import { SiteConfig } from "@config";
+---
+
 <>
   <a
     href="/search"
@@ -5,6 +9,10 @@
   <a
     href="/rss.xml"
     class="i-mdi-rss-box hover:scale-110 text-sky-500 transition-all"></a>
+  <a
+    href={SiteConfig.contact.twitter}
+    target="_blank"
+    class="i-mdi-twitter text-sky-500"></a>
   <span
     class="theme-toggle cursor-pointer flex items-center hover:scale-110 text-sky-500 transition-all pr-2"
   >

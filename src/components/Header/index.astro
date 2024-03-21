@@ -11,13 +11,13 @@ const { activeNav } = Astro.props;
 <header class="flex gap-2 items-center text-sm md:text-[18px] relative">
   <a
     href="/"
-    class="p-1 bg-sky-400 dark:bg-sky-100/10 dark:text-gray-100 text-white overflow-hidden flex items-center rounded-l-full rounded-r-md gap-2 mr-4 pr-2 font-semibold"
+    class="p-1 bg-sky-400 dark:bg-sky-100/10 dark:text-gray-100 text-white overflow-hidden flex items-center rounded-l-full rounded-r-md gap-2 mr-auto sm:mr-4 pr-2 font-semibold"
   >
     <img
       src={SiteConfig.avatar}
       class="w-6 h-6 rounded-full animate-spin animate-duration-[5s]"
     />
-    <span>{SiteConfig.author}</span>
+    <span class="animate-fade-up">{SiteConfig.author}</span>
   </a>
   <a
     href="/posts"
@@ -42,12 +42,14 @@ const { activeNav } = Astro.props;
       activeNav === "weekly" ? "active-nav" : "opacity-70",
     ]}>weekly</a
   >
-  <div class="ml-auto flex-nowrap items-center gap-4 hidden sm:flex">
+  <div
+    class="ml-auto flex-nowrap items-center gap-4 hidden sm:flex animate-flip-up"
+  >
     <MenuIcons />
   </div>
 
   <div
-    class="absolute top-[100%] w-full flex justify-center pt-8 text-[20px] gap-4 sm:hidden"
+    class="absolute top-[100%] w-full flex pt-8 text-[20px] gap-4 sm:hidden animate-flip-up"
   >
     <MenuIcons />
   </div>
