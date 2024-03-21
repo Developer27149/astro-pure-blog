@@ -1,5 +1,5 @@
 import rss from '@astrojs/rss';
-import { g as getCollection, a as getSortedPosts, S as SiteConfig } from './index_C5Y-AERP.mjs';
+import { g as getCollection, a as getSortedPosts, S as SiteConfig } from './index_BPqQeGLB.mjs';
 
 const GET = async (req) => {
   const posts = await getCollection("blog");

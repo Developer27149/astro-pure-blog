@@ -1,4 +1,4 @@
-import { S as SiteConfig } from './index_C5Y-AERP.mjs';
+import { S as SiteConfig } from './index_BPqQeGLB.mjs';
 
 const robots = `
 User-agent: Googlebot
