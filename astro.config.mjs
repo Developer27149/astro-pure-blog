@@ -4,6 +4,7 @@ import { SiteConfig } from "./src/config";
 import react from "@astrojs/react";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
+import zeabur from "@zeabur/astro-adapter/serverless";
 
 import sitemap from "@astrojs/sitemap";
 
@@ -31,4 +32,6 @@ export default defineConfig({
       theme: "dracula",
     },
   },
+  output: "server",
+  adapter: zeabur(),
 });
