@@ -94,22 +94,20 @@ const { posts } = Astro.props;
       descriptionElem.classList.add("hidden");
     }
   });
-  let isLeaved = false;
+  let noder;
   posts.forEach((post) => {
     post.addEventListener("mouseenter", () => {
-      setTimeout(() => {
-        if (isLeaved === false) return;
+      noder = setTimeout(() => {
         descriptionElem.classList.remove("hidden");
         descriptionElem.classList.add("animate-jump");
         descriptionElem.classList.add("p-2");
         descriptionElem.classList.remove("animate-jump-out");
         const description = post.getAttribute("data-description");
         descriptionElem.innerHTML = description;
-        isLeaved = false;
       }, 1000 * 0.8);
     });
     post.addEventListener("mouseleave", () => {
-      isLeaved = true;
+      clearTimeout(noder);
       descriptionElem.classList.remove("animate-jump");
       descriptionElem.classList.add("animate-jump-out");
     });
