@@ -1,0 +1,470 @@
+<!DOCTYPE html><html lang="zh-CN" class="scroll-smooth"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta name="theme" content="light"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://astro.build/posts/tailwind-typography/"><meta name="generator" content="Astro v4.4.4"><!-- General meta tags --><title>Blog - Tailwind Typography Plugin</title><meta name="title" content="Blog - Tailwind Typography Plugin"><meta name="description" content="EXAMPLE POST: About Tailwind Typography Plugin and how you can use it effectively."><meta name="auth" content="Sat Naing"><!-- Sitemap --><link rel="sitemap" href="/sitemap-index.xml"><!-- open graph --><meta property="og:title" content="Blog - Tailwind Typography Plugin"><meta property="og:description" content="EXAMPLE POST: About Tailwind Typography Plugin and how you can use it effectively."><meta property="og:url" content="https://astro.build/posts/tailwind-typography/"><meta property="og:image" content="https://astro.build/posts/tailwind-typography-plugin.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2022-07-05T02:05:51.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://astro.build/posts/tailwind-typography/"><meta property="twitter:title" content="Blog - Tailwind Typography Plugin"><meta property="twitter:description" content="EXAMPLE POST: About Tailwind Typography Plugin and how you can use it effectively."><meta property="twitter:image" content="https://astro.build/posts/tailwind-typography-plugin.png"><!-- scripts --><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/index.DakE2zPI.css" />
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0}}@keyframes astroFadeOut{to{opacity:0}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><script type="module" src="/_astro/hoisted.DqR2iBSn.js"></script><style>[data-astro-transition-scope="astro-etz2kkg3-1"] { view-transition-name: tailwind-typography-plugin; }@layer astro { ::view-transition-old(tailwind-typography-plugin) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(tailwind-typography-plugin) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(tailwind-typography-plugin) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(tailwind-typography-plugin) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-etz2kkg3-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-etz2kkg3-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-etz2kkg3-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-etz2kkg3-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-etz2kkg3-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-etz2kkg3-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-etz2kkg3-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-etz2kkg3-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-s645wb5z-2"] { view-transition-name: how-to-configure-astropaper-theme; }@layer astro { ::view-transition-old(how-to-configure-astropaper-theme) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(how-to-configure-astropaper-theme) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(how-to-configure-astropaper-theme) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(how-to-configure-astropaper-theme) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-s645wb5z-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-s645wb5z-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-s645wb5z-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-s645wb5z-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-s645wb5z-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-s645wb5z-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-s645wb5z-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-s645wb5z-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-s645wb5z-3"] { view-transition-name: how-to-use-git-hooks-to-set-created-and-modified-dates; }@layer astro { ::view-transition-old(how-to-use-git-hooks-to-set-created-and-modified-dates) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(how-to-use-git-hooks-to-set-created-and-modified-dates) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(how-to-use-git-hooks-to-set-created-and-modified-dates) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(how-to-use-git-hooks-to-set-created-and-modified-dates) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-s645wb5z-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-s645wb5z-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-s645wb5z-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-s645wb5z-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-s645wb5z-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-s645wb5z-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-s645wb5z-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-s645wb5z-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-4acxdjum-4"] { view-transition-name: typescript; }@layer astro { ::view-transition-old(typescript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(typescript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(typescript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(typescript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4acxdjum-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4acxdjum-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4acxdjum-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4acxdjum-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4acxdjum-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4acxdjum-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4acxdjum-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4acxdjum-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-4acxdjum-5"] { view-transition-name: astro; }@layer astro { ::view-transition-old(astro) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4acxdjum-5"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4acxdjum-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4acxdjum-5"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4acxdjum-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4acxdjum-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4acxdjum-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4acxdjum-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4acxdjum-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body> <meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate">  <div class="flex justify-between items-center"> <a href="/" class="text-black dark:text-sky-500 font-semibold text-xl">@Developer27149</a> <div class="flex gap-4"> <i class="i-mdi-keyboard-backspace cursor-pointer hover:scale-110 text-sky-400 transition-all" id="_back_"></i> <a href="/search" class="i-mdi-magnify hover:scale-110 text-sky-500 transition-all"></a><a href="/rss.xml" class="i-mdi-rss-box hover:scale-110 text-sky-500 transition-all"></a><a href="https://twitter.com/miaocai0" target="_blank" class="i-mdi-twitter text-sky-500"></a><span class="theme-toggle cursor-pointer flex items-center hover:scale-110 text-sky-500 transition-all pr-2"><i class="i-mdi-lightbulb-on-10 dark:inline-block hidden"></i><i class="i-mdi-weather-night dark:hidden inline-block"></i></span> </div> </div>  <h1 class="text-4xl pt-8" data-astro-transition-scope="astro-etz2kkg3-1">Tailwind Typography Plugin</h1> <div class="flex items-center gap-1 mb-4"> <i class="i-mdi-calendar-month"></i> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="Zglfq7" component-url="/_astro/TimeAgo.Blzcs47r.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;date&quot;:[3,&quot;2022-07-05T02:05:51.000Z&quot;]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;TimeAgo&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island> </div> <article id="content" class="prose lg:prose-xl dark:prose-invert prose-a:text-blue-600 hover:prose-a:text-blue-500"> <blockquote>
+<p>This article is from <a href="https://tailwindcss-typography.vercel.app/">TailwindLabs</a>. I put this article to demonstrate how you can write blog posts/articles using AstroPaper theme.</p>
+</blockquote>
+<p>By default, Tailwind removes all of the default browser styling from paragraphs, headings, lists and more. This ends up being really useful for building application UIs because you spend less time undoing user-agent styles, but when you <em>really are</em> just trying to style some content that came from a rich-text editor in a CMS or a markdown file, it can be surprising and unintuitive.</p>
+<p>We get lots of complaints about it actually, with people regularly asking us things like:</p>
+<blockquote>
+<p>Why is Tailwind removing the default styles on my <code>h1</code> elements? How do I disable this? What do you mean I lose all the other base styles too?
+We hear you, but we’re not convinced that simply disabling our base styles is what you really want. You don’t want to have to remove annoying margins every time you use a <code>p</code> element in a piece of your dashboard UI. And I doubt you really want your blog posts to use the user-agent styles either — you want them to look <em>awesome</em>, not awful.</p>
+</blockquote>
+<p>The <code>@tailwindcss/typography</code> plugin is our attempt to give you what you <em>actually</em> want, without any of the downsides of doing something stupid like disabling our base styles.</p>
+<p>It adds a new <code>prose</code> class that you can slap on any block of vanilla HTML content and turn it into a beautiful, well-formatted document:</p>
+<pre class="astro-code dracula" style="background-color:#282A36;color:#F8F8F2; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F8F8F2">&#x3C;</span><span style="color:#FF79C6">article</span><span style="color:#50FA7B;font-style:italic"> class</span><span style="color:#FF79C6">=</span><span style="color:#E9F284">"</span><span style="color:#F1FA8C">prose</span><span style="color:#E9F284">"</span><span style="color:#F8F8F2">></span></span>
+<span class="line"><span style="color:#F8F8F2">  &#x3C;</span><span style="color:#FF79C6">h1</span><span style="color:#F8F8F2">>Garlic bread with cheese: What the science tells us&#x3C;/</span><span style="color:#FF79C6">h1</span><span style="color:#F8F8F2">></span></span>
+<span class="line"><span style="color:#F8F8F2">  &#x3C;</span><span style="color:#FF79C6">p</span><span style="color:#F8F8F2">></span></span>
+<span class="line"><span style="color:#F8F8F2">    For years parents have espoused the health benefits of eating garlic bread</span></span>
+<span class="line"><span style="color:#F8F8F2">    with cheese to their children, with the food earning such an iconic status</span></span>
+<span class="line"><span style="color:#F8F8F2">    in our culture that kids will often dress up as warm, cheesy loaf for</span></span>
+<span class="line"><span style="color:#F8F8F2">    Halloween.</span></span>
+<span class="line"><span style="color:#F8F8F2">  &#x3C;/</span><span style="color:#FF79C6">p</span><span style="color:#F8F8F2">></span></span>
+<span class="line"><span style="color:#F8F8F2">  &#x3C;</span><span style="color:#FF79C6">p</span><span style="color:#F8F8F2">></span></span>
+<span class="line"><span style="color:#F8F8F2">    But a recent study shows that the celebrated appetizer may be linked to a</span></span>
+<span class="line"><span style="color:#F8F8F2">    series of rabies cases springing up around the country.</span></span>
+<span class="line"><span style="color:#F8F8F2">  &#x3C;/</span><span style="color:#FF79C6">p</span><span style="color:#F8F8F2">></span></span>
+<span class="line"><span style="color:#6272A4">  &#x3C;!-- ... --></span></span>
+<span class="line"><span style="color:#F8F8F2">&#x3C;/</span><span style="color:#FF79C6">article</span><span style="color:#F8F8F2">></span></span></code></pre>
+<p>For more information about how to use the plugin and the features it includes, <a href="https://github.com/tailwindcss/typography/blob/master/README.md">read the documentation</a>.</p>
+<hr>
+<h2 id="what-to-expect-from-here-on-out">What to expect from here on out</h2>
+<p>What follows from here is just a bunch of absolute nonsense I’ve written to dogfood the plugin itself. It includes every sensible typographic element I could think of, like <strong>bold text</strong>, unordered lists, ordered lists, code blocks, block quotes, <em>and even italics</em>.</p>
+<p>It’s important to cover all of these use cases for a few reasons:</p>
+<ol>
+<li>We want everything to look good out of the box.</li>
+<li>Really just the first reason, that’s the whole point of the plugin.</li>
+<li>Here’s a third pretend reason though a list with three items looks more realistic than a list with two items.</li>
+</ol>
+<p>Now we’re going to try out another header style.</p>
+<h3 id="typography-should-be-easy">Typography should be easy</h3>
+<p>So that’s a header for you — with any luck if we’ve done our job correctly that will look pretty reasonable.</p>
+<p>Something a wise person once told me about typography is:</p>
+<blockquote>
+<p>Typography is pretty important if you don’t want your stuff to look like trash. Make it good then it won’t be bad.
+It’s probably important that images look okay here by default as well:</p>
+</blockquote>
+<figure>
+  <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-1.2.1&#x26;ixid=eyJhcHBfaWQiOjEyMDd9&#x26;auto=format&#x26;fit=crop&#x26;w=1000&#x26;q=80" alt="">
+  <figcaption>
+    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
+    classical Latin literature from 45 BC, making it over 2000 years old.
+  </figcaption>
+</figure>
+<p>Now I’m going to show you an example of an unordered list to make sure that looks good, too:</p>
+<ul>
+<li>So here is the first item in this list.</li>
+<li>In this example we’re keeping the items short.</li>
+<li>Later, we’ll use longer, more complex list items.</li>
+</ul>
+<p>And that’s the end of this section.</p>
+<h2 id="what-if-we-stack-headings">What if we stack headings?</h2>
+<h3 id="we-should-make-sure-that-looks-good-too">We should make sure that looks good, too.</h3>
+<p>Sometimes you have headings directly underneath each other. In those cases you often have to undo the top margin on the second heading because it usually looks better for the headings to be closer together than a paragraph followed by a heading should be.</p>
+<h3 id="when-a-heading-comes-after-a-paragraph">When a heading comes after a paragraph …</h3>
+<p>When a heading comes after a paragraph, we need a bit more space, like I already mentioned above. Now let’s see what a more complex list would look like.</p>
+<ul>
+<li>
+<p><strong>I often do this thing where list items have headings.</strong></p>
+<p>For some reason I think this looks cool which is unfortunate because it’s pretty annoying to get the styles right.</p>
+<p>I often have two or three paragraphs in these list items, too, so the hard part is getting the spacing between the paragraphs, list item heading, and separate list items to all make sense. Pretty tough honestly, you could make a strong argument that you just shouldn’t write this way.</p>
+</li>
+<li>
+<p><strong>Since this is a list, I need at least two items.</strong></p>
+<p>I explained what I’m doing already in the previous list item, but a list wouldn’t be a list if it only had one item, and we really want this to look realistic. That’s why I’ve added this second list item so I actually have something to look at when writing the styles.</p>
+</li>
+<li>
+<p><strong>It’s not a bad idea to add a third item either.</strong></p>
+<p>I think it probably would’ve been fine to just use two items but three is definitely not worse, and since I seem to be having no trouble making up arbitrary things to type, I might as well include it.</p>
+</li>
+</ul>
+<p>After this sort of list I usually have a closing statement or paragraph, because it kinda looks weird jumping right to a heading.</p>
+<h2 id="code-should-look-okay-by-default">Code should look okay by default.</h2>
+<p>I think most people are going to use <a href="https://highlightjs.org/">highlight.js</a> or <a href="https://prismjs.com/">Prism</a> or something if they want to style their code blocks but it wouldn’t hurt to make them look <em>okay</em> out of the box, even with no syntax highlighting.</p>
+<p>Here’s what a default <code>tailwind.config.js</code> file looks like at the time of writing:</p>
+<pre class="astro-code dracula" style="background-color:#282A36;color:#F8F8F2; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#8BE9FD;font-style:italic">module</span><span style="color:#F8F8F2">.</span><span style="color:#8BE9FD;font-style:italic">exports</span><span style="color:#FF79C6"> =</span><span style="color:#F8F8F2"> {</span></span>
+<span class="line"><span style="color:#F8F8F2">  purge</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> [],</span></span>
+<span class="line"><span style="color:#F8F8F2">  theme</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> {</span></span>
+<span class="line"><span style="color:#F8F8F2">    extend</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> {},</span></span>
+<span class="line"><span style="color:#F8F8F2">  },</span></span>
+<span class="line"><span style="color:#F8F8F2">  variants</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> {},</span></span>
+<span class="line"><span style="color:#F8F8F2">  plugins</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> [],</span></span>
+<span class="line"><span style="color:#F8F8F2">};</span></span></code></pre>
+<p>Hopefully that looks good enough to you.</p>
+<h3 id="what-about-nested-lists">What about nested lists?</h3>
+<p>Nested lists basically always look bad which is why editors like Medium don’t even let you do it, but I guess since some of you goofballs are going to do it we have to carry the burden of at least making it work.</p>
+<ol>
+<li><strong>Nested lists are rarely a good idea.</strong>
+<ul>
+<li>You might feel like you are being really “organized” or something but you are just creating a gross shape on the screen that is hard to read.</li>
+<li>Nested navigation in UIs is a bad idea too, keep things as flat as possible.</li>
+<li>Nesting tons of folders in your source code is also not helpful.</li>
+</ul>
+</li>
+<li><strong>Since we need to have more items, here’s another one.</strong>
+<ul>
+<li>I’m not sure if we’ll bother styling more than two levels deep.</li>
+<li>Two is already too much, three is guaranteed to be a bad idea.</li>
+<li>If you nest four levels deep you belong in prison.</li>
+</ul>
+</li>
+<li><strong>Two items isn’t really a list, three is good though.</strong>
+<ul>
+<li>Again please don’t nest lists if you want people to actually read your content.</li>
+<li>Nobody wants to look at this.</li>
+<li>I’m upset that we even have to bother styling this.</li>
+</ul>
+</li>
+</ol>
+<p>The most annoying thing about lists in Markdown is that <code>&#x3C;li></code> elements aren’t given a child <code>&#x3C;p></code> tag unless there are multiple paragraphs in the list item. That means I have to worry about styling that annoying situation too.</p>
+<ul>
+<li>
+<p><strong>For example, here’s another nested list.</strong></p>
+<p>But this time with a second paragraph.</p>
+<ul>
+<li>These list items won’t have <code>&#x3C;p></code> tags</li>
+<li>Because they are only one line each</li>
+</ul>
+</li>
+<li>
+<p><strong>But in this second top-level list item, they will.</strong></p>
+<p>This is especially annoying because of the spacing on this paragraph.</p>
+<ul>
+<li>
+<p>As you can see here, because I’ve added a second line, this list item now has a <code>&#x3C;p></code> tag.</p>
+<p>This is the second line I’m talking about by the way.</p>
+</li>
+<li>
+<p>Finally here’s another list item so it’s more like a list.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>A closing list item, but with no nested list, because why not?</p>
+</li>
+</ul>
+<p>And finally a sentence to close off this section.</p>
+<h2 id="there-are-other-elements-we-need-to-style">There are other elements we need to style</h2>
+<p>I almost forgot to mention links, like <a href="https://tailwindcss.com">this link to the Tailwind CSS website</a>. We almost made them blue but that’s so yesterday, so we went with dark gray, feels edgier.</p>
+<p>We even included table styles, check it out:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Wrestler</th><th>Origin</th><th>Finisher</th></tr></thead><tbody><tr><td>Bret “The Hitman” Hart</td><td>Calgary, AB</td><td>Sharpshooter</td></tr><tr><td>Stone Cold Steve Austin</td><td>Austin, TX</td><td>Stone Cold Stunner</td></tr><tr><td>Randy Savage</td><td>Sarasota, FL</td><td>Elbow Drop</td></tr><tr><td>Vader</td><td>Boulder, CO</td><td>Vader Bomb</td></tr><tr><td>Razor Ramon</td><td>Chuluota, FL</td><td>Razor’s Edge</td></tr></tbody></table>
+<p>We also need to make sure inline code looks good, like if I wanted to talk about <code>&#x3C;span></code> elements or tell you the good news about <code>@tailwindcss/typography</code>.</p>
+<h3 id="sometimes-i-even-use-code-in-headings">Sometimes I even use <code>code</code> in headings</h3>
+<p>Even though it’s probably a bad idea, and historically I’ve had a hard time making it look good. This <em>“wrap the code blocks in backticks”</em> trick works pretty well though really.</p>
+<p>Another thing I’ve done in the past is put a <code>code</code> tag inside of a link, like if I wanted to tell you about the <a href="https://github.com/tailwindcss/docs"><code>tailwindcss/docs</code></a> repository. I don’t love that there is an underline below the backticks but it is absolutely not worth the madness it would require to avoid it.</p>
+<h4 id="we-havent-used-an-h4-yet">We haven’t used an <code>h4</code> yet</h4>
+<p>But now we have. Please don’t use <code>h5</code> or <code>h6</code> in your content, Medium only supports two heading levels for a reason, you animals. I honestly considered using a <code>before</code> pseudo-element to scream at you if you use an <code>h5</code> or <code>h6</code>.</p>
+<p>We don’t style them at all out of the box because <code>h4</code> elements are already so small that they are the same size as the body copy. What are we supposed to do with an <code>h5</code>, make it <em>smaller</em> than the body copy? No thanks.</p>
+<h3 id="we-still-need-to-think-about-stacked-headings-though">We still need to think about stacked headings though.</h3>
+<h4 id="lets-make-sure-we-dont-screw-that-up-with-h4-elements-either">Let’s make sure we don’t screw that up with <code>h4</code> elements, either.</h4>
+<p>Phew, with any luck we have styled the headings above this text and they look pretty good.</p>
+<p>Let’s add a closing paragraph here so things end with a decently sized block of text. I can’t explain why I want things to end that way but I have to assume it’s because I think things will look weird or unbalanced if there is a heading too close to the end of the document.</p>
+<p>What I’ve written here is probably long enough, but adding this final sentence can’t hurt.</p> </article>  <ul class="flex gap-4 mb-4 mx-4 italic animate-flip-up py-12 justify-end"><a class="hover:underline underline-offset-2 transition-all flex items-center" href="/tags/TypeScript" class="inline-block"> <span class="opacity-80">#</span> <span data-astro-transition-scope="astro-4acxdjum-4"> TypeScript </span> </a><a class="hover:underline underline-offset-2 transition-all flex items-center" href="/tags/Astro" class="inline-block"> <span class="opacity-80">#</span> <span data-astro-transition-scope="astro-4acxdjum-5"> Astro </span> </a></ul> <div class="font-semibold text-2xl dark:text-teal-400 text-black mb-4">
+Recent Blog
+</div><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="relative rounded-md overflow-hidden group"><a href="/posts/how-to-configure-astropaper-theme" data-astro-transition-scope="astro-s645wb5z-2"><img src="https://user-images.githubusercontent.com/53733092/215771435-25408246-2309-4f8b-a781-1f3d93bdf0ec.png" class="object-cover w-full h-48 group-hover:scale-110 transition-transform"><p class="absolute inset-x-1 bottom-1 bg-gray-900/10 text-white truncate text-center" title="How to configure AstroPaper theme">How to configure AstroPaper theme</p></a></div><div class="relative rounded-md overflow-hidden group"><a href="/posts/setting-dates-via-git-hooks" data-astro-transition-scope="astro-s645wb5z-3"><img src="https://user-images.githubusercontent.com/53733092/215771435-25408246-2309-4f8b-a781-1f3d93bdf0ec.png" class="object-cover w-full h-48 group-hover:scale-110 transition-transform"><p class="absolute inset-x-1 bottom-1 bg-gray-900/10 text-white truncate text-center" title="How to use Git Hooks to set Created and Modified Dates">How to use Git Hooks to set Created and Modified Dates</p></a></div></div> <button id="back-to-top" class="fixed bottom-4 right-4 bg-skin-base opacity-35 hover:opacity-100 text-teal-400 p-2 rounded-full shadow-lg hover:shadow-xl transition-all z-50"> <i class="i-mdi-arrow-up-circle-outline text-2xl"></i> </button>  <footer class="text-sm pt-32 text-center items-center flex gap-1 justify-center md:text-left pb-8 sm:pb-0"> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="underline underline-offset-2 pr-2">
+CC BY-NC-SA 4.0
+</a>
+2024 - PRESENT © Developer27149<a target="_blank" href="https://github.com/Developer27149" class="hidden md:inline-block"></a> <a href="https://twitter.com/miaocai0" class="i-mdi-twitter text-sky-500"></a> </footer> </body></html> <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const back = document.getElementById("_back_");
+    back.addEventListener("click", () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = window.location.origin;
+      }
+    });
+  });
+
+  function addHeadingLinks() {
+    let headings = Array.from(document.querySelectorAll("h2, h3, h4, h5, h6"));
+    for (let heading of headings) {
+      heading.classList.add("group");
+      let link = document.createElement("a");
+      link.innerText = "#";
+      link.className = "heading-link hidden group-hover:inline-block ml-2";
+      link.href = "#" + heading.id;
+      link.ariaHidden = "true";
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    let copyButtonLabel = "Copy";
+    let codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (let codeBlock of codeBlocks) {
+      codeBlock.classList.add("group");
+      let wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      let copyButton = document.createElement("button");
+      copyButton.className =
+        "bg-green-500 text-white absolute right-1 top-1 transition-all opacity-0 group-hover:opacity-100 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      let code = block.querySelector("code");
+      let text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+    document.addEventListener("scroll", () => {
+      let backToTopButton = document.querySelector("#back-to-top");
+      if (
+        document.body.scrollTop > 100 ||
+        document.documentElement.scrollTop > 100
+      ) {
+        backToTopButton.style.display = "block";
+      } else {
+        backToTopButton.style.display = "none";
+      }
+    });
+  }
+  backToTop();
+</script>

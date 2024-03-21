@@ -1,0 +1,416 @@
+<!DOCTYPE html><html lang="zh-CN" class="scroll-smooth"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta name="theme" content="light"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://astro.build/posts/setting-dates-via-git-hooks/"><meta name="generator" content="Astro v4.4.4"><!-- General meta tags --><title>Blog - How to use Git Hooks to set Created and Modified Dates</title><meta name="title" content="Blog - How to use Git Hooks to set Created and Modified Dates"><meta name="description" content="How to use Git Hooks to set your Created and Modified Dates on AstroPaper"><meta name="auth" content="Simon Smale"><!-- Sitemap --><link rel="sitemap" href="/sitemap-index.xml"><!-- open graph --><meta property="og:title" content="Blog - How to use Git Hooks to set Created and Modified Dates"><meta property="og:description" content="How to use Git Hooks to set your Created and Modified Dates on AstroPaper"><meta property="og:url" content="https://astro.build/posts/setting-dates-via-git-hooks/"><meta property="og:image" content="https://astro.build/posts/how-to-use-git-hooks-to-set-created-and-modified-dates.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2024-01-03T20:40:08.000Z"><meta property="article:modified_time" content="2024-01-08T18:59:05.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://astro.build/posts/setting-dates-via-git-hooks/"><meta property="twitter:title" content="Blog - How to use Git Hooks to set Created and Modified Dates"><meta property="twitter:description" content="How to use Git Hooks to set your Created and Modified Dates on AstroPaper"><meta property="twitter:image" content="https://astro.build/posts/how-to-use-git-hooks-to-set-created-and-modified-dates.png"><!-- scripts --><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/index.DakE2zPI.css" />
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0}}@keyframes astroFadeOut{to{opacity:0}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><script type="module" src="/_astro/hoisted.DqR2iBSn.js"></script><style>[data-astro-transition-scope="astro-etz2kkg3-1"] { view-transition-name: how-to-use-git-hooks-to-set-created-and-modified-dates; }@layer astro { ::view-transition-old(how-to-use-git-hooks-to-set-created-and-modified-dates) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(how-to-use-git-hooks-to-set-created-and-modified-dates) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(how-to-use-git-hooks-to-set-created-and-modified-dates) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(how-to-use-git-hooks-to-set-created-and-modified-dates) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-etz2kkg3-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-etz2kkg3-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-etz2kkg3-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-etz2kkg3-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-etz2kkg3-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-etz2kkg3-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-etz2kkg3-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-etz2kkg3-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-s645wb5z-2"] { view-transition-name: how-to-configure-astropaper-theme; }@layer astro { ::view-transition-old(how-to-configure-astropaper-theme) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(how-to-configure-astropaper-theme) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(how-to-configure-astropaper-theme) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(how-to-configure-astropaper-theme) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-s645wb5z-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-s645wb5z-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-s645wb5z-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-s645wb5z-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-s645wb5z-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-s645wb5z-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-s645wb5z-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-s645wb5z-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-s645wb5z-3"] { view-transition-name: how-to-add-a-new-social-icon-to-astropaper; }@layer astro { ::view-transition-old(how-to-add-a-new-social-icon-to-astropaper) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(how-to-add-a-new-social-icon-to-astropaper) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(how-to-add-a-new-social-icon-to-astropaper) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(how-to-add-a-new-social-icon-to-astropaper) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-s645wb5z-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-s645wb5z-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-s645wb5z-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-s645wb5z-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-s645wb5z-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-s645wb5z-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-s645wb5z-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-s645wb5z-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-4acxdjum-4"] { view-transition-name: docs; }@layer astro { ::view-transition-old(docs) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(docs) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(docs) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(docs) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4acxdjum-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4acxdjum-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4acxdjum-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4acxdjum-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4acxdjum-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4acxdjum-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4acxdjum-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4acxdjum-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-4acxdjum-5"] { view-transition-name: faq; }@layer astro { ::view-transition-old(faq) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(faq) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(faq) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(faq) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4acxdjum-5"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4acxdjum-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4acxdjum-5"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4acxdjum-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4acxdjum-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4acxdjum-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4acxdjum-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4acxdjum-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body> <meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate">  <div class="flex justify-between items-center"> <a href="/" class="text-black dark:text-sky-500 font-semibold text-xl">@Developer27149</a> <div class="flex gap-4"> <i class="i-mdi-keyboard-backspace cursor-pointer hover:scale-110 text-sky-400 transition-all" id="_back_"></i> <a href="/search" class="i-mdi-magnify hover:scale-110 text-sky-500 transition-all"></a><a href="/rss.xml" class="i-mdi-rss-box hover:scale-110 text-sky-500 transition-all"></a><a href="https://twitter.com/miaocai0" target="_blank" class="i-mdi-twitter text-sky-500"></a><span class="theme-toggle cursor-pointer flex items-center hover:scale-110 text-sky-500 transition-all pr-2"><i class="i-mdi-lightbulb-on-10 dark:inline-block hidden"></i><i class="i-mdi-weather-night dark:hidden inline-block"></i></span> </div> </div>  <h1 class="text-4xl pt-8" data-astro-transition-scope="astro-etz2kkg3-1">How to use Git Hooks to set Created and Modified Dates</h1> <div class="flex items-center gap-1 mb-4"> <i class="i-mdi-calendar-month"></i> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="1c624e" component-url="/_astro/TimeAgo.Blzcs47r.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;date&quot;:[3,&quot;2024-01-08T18:59:05.000Z&quot;]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;TimeAgo&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island> </div> <article id="content" class="prose lg:prose-xl dark:prose-invert prose-a:text-blue-600 hover:prose-a:text-blue-500"> <p>In this post I will explain how to use the pre-commit Git hook to automate the input of the created (<code>pubDatetime</code>) and modified (<code>modDatetime</code>) in the AstroPaper blog theme frontmatter</p>
+<h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li><a href="#have-them-everywhere">Have them Everywhere</a></li>
+<li><a href="#the-hook">The Hook</a>
+<ul>
+<li><a href="#updating-the-modified-date-when-a-file-is-edited">Updating the modified date when a file is edited</a>
+<ul>
+<li><a href="#improvement---more-explicit">Improvement - More Explicit</a></li>
+<li><a href="#note">NOTE</a></li>
+</ul>
+</li>
+<li><a href="#adding-the-date-for-new-files">Adding the Date for new files</a>
+<ul>
+<li><a href="#improvement---only-loop-once">Improvement - Only Loop Once</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#populating-the-frontmatter">Populating the frontmatter</a></li>
+<li><a href="#empty-moddatetime-changes">Empty <code>modDatetime</code> changes</a></li>
+</ul>
+<p></p></details><p></p>
+<h2 id="have-them-everywhere">Have them Everywhere</h2>
+<p><a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks">Git hooks</a> are great for automating tasks like <a href="https://gist.github.com/SSmale/3b380e5bbed3233159fb7031451726ea">adding</a> or <a href="https://itnext.io/using-git-hooks-to-enforce-branch-naming-policy-ffd81fa01e5e">checking</a> the branch name to your commit messages or <a href="https://gist.github.com/SSmale/367deee757a9b2e119d241e120249000">stopping you committing plain text secrets</a>. Their biggest flaw is that client-side hooks are per machine.</p>
+<p>You can get around this by having a <code>hooks</code> directory and manually copy them to the <code>.git/hooks</code> directory or set up a symlink, but this all requires you to remember to set it up, and that is not something I am good at doing.</p>
+<p>As this project uses npm, we are able to make use of a package called <a href="https://typicode.github.io/husky/">Husky</a> (this is already installed in AstroPaper) to automatically install the hooks for us.</p>
+<h2 id="the-hook">The Hook</h2>
+<p>As we want this hook to run as we commit the code to update the dates and then have that as part of our change we are going to use the <code>pre-commit</code> hook. This has already been set up by this AstroPaper project, but if it hadn’t, you would run <code>npx husky add .husky/pre-commit 'echo "This is our new pre-commit hook"'</code>.</p>
+<p>Navigating to the <code>hooks/pre-commit</code> file, we are going to add one or both of the following snippets.</p>
+<h3 id="updating-the-modified-date-when-a-file-is-edited">Updating the modified date when a file is edited</h3>
+<hr>
+<p>UPDATE:</p>
+<p>This section has been updated with a new version of the hook that is smarter. It will now not increment the <code>modDatetime</code> until the post is published. On the first publish, set the draft status to <code>first</code> and watch the magic happen.</p>
+<hr>
+<pre class="astro-code dracula" style="background-color:#282A36;color:#F8F8F2; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6272A4"># Modified files, update the modDatetime</span></span>
+<span class="line"><span style="color:#50FA7B">git</span><span style="color:#F1FA8C"> diff</span><span style="color:#BD93F9"> --cached</span><span style="color:#BD93F9"> --name-status</span><span style="color:#FF79C6"> |</span></span>
+<span class="line"><span style="color:#50FA7B">grep</span><span style="color:#BD93F9"> -i</span><span style="color:#E9F284"> '</span><span style="color:#F1FA8C">^M.*\.md$</span><span style="color:#E9F284">'</span><span style="color:#FF79C6"> |</span></span>
+<span class="line"><span style="color:#FF79C6">while</span><span style="color:#8BE9FD"> read</span><span style="color:#F1FA8C"> _</span><span style="color:#F1FA8C"> file</span><span style="color:#F8F8F2">; </span><span style="color:#FF79C6">do</span></span>
+<span class="line"><span style="color:#BD93F9">  filecontent</span><span style="color:#FF79C6">=</span><span style="color:#F1FA8C">$(</span><span style="color:#50FA7B">cat</span><span style="color:#E9F284"> "</span><span style="color:#BD93F9">$file</span><span style="color:#E9F284">"</span><span style="color:#F1FA8C">)</span></span>
+<span class="line"><span style="color:#BD93F9">  frontmatter</span><span style="color:#FF79C6">=</span><span style="color:#F1FA8C">$(</span><span style="color:#8BE9FD">echo</span><span style="color:#E9F284"> "</span><span style="color:#BD93F9">$filecontent</span><span style="color:#E9F284">"</span><span style="color:#FF79C6"> |</span><span style="color:#50FA7B"> awk</span><span style="color:#BD93F9"> -v</span><span style="color:#F1FA8C"> RS=</span><span style="color:#E9F284">'</span><span style="color:#F1FA8C">---</span><span style="color:#E9F284">'</span><span style="color:#E9F284"> '</span><span style="color:#F1FA8C">NR==2{print}</span><span style="color:#E9F284">'</span><span style="color:#F1FA8C">)</span></span>
+<span class="line"><span style="color:#BD93F9">  draft</span><span style="color:#FF79C6">=</span><span style="color:#F1FA8C">$(</span><span style="color:#8BE9FD">echo</span><span style="color:#E9F284"> "</span><span style="color:#BD93F9">$frontmatter</span><span style="color:#E9F284">"</span><span style="color:#FF79C6"> |</span><span style="color:#50FA7B"> awk</span><span style="color:#E9F284"> '</span><span style="color:#F1FA8C">/^draft: /{print $2}</span><span style="color:#E9F284">'</span><span style="color:#F1FA8C">)</span></span>
+<span class="line"><span style="color:#FF79C6">  if</span><span style="color:#F8F8F2"> [ </span><span style="color:#E9F284">"</span><span style="color:#BD93F9">$draft</span><span style="color:#E9F284">"</span><span style="color:#FF79C6"> =</span><span style="color:#E9F284"> "</span><span style="color:#F1FA8C">false</span><span style="color:#E9F284">"</span><span style="color:#F8F8F2"> ]; </span><span style="color:#FF79C6">then</span></span>
+<span class="line"><span style="color:#8BE9FD">    echo</span><span style="color:#E9F284"> "</span><span style="color:#BD93F9">$file</span><span style="color:#F1FA8C"> modDateTime updated</span><span style="color:#E9F284">"</span></span>
+<span class="line"><span style="color:#50FA7B">    cat</span><span style="color:#BD93F9"> $file</span><span style="color:#FF79C6"> |</span><span style="color:#50FA7B"> sed</span><span style="color:#E9F284"> "</span><span style="color:#F1FA8C">/---.*/,/---.*/s/^modDatetime:.*$/modDatetime: $(</span><span style="color:#50FA7B">date</span><span style="color:#BD93F9"> -u</span><span style="color:#E9F284"> "</span><span style="color:#F1FA8C">+%Y-%m-%dT%H:%M:%SZ</span><span style="color:#E9F284">"</span><span style="color:#F1FA8C">)/</span><span style="color:#E9F284">"</span><span style="color:#FF79C6"> ></span><span style="color:#F1FA8C"> tmp</span></span>
+<span class="line"><span style="color:#50FA7B">    mv</span><span style="color:#F1FA8C"> tmp</span><span style="color:#BD93F9"> $file</span></span>
+<span class="line"><span style="color:#50FA7B">    git</span><span style="color:#F1FA8C"> add</span><span style="color:#BD93F9"> $file</span></span>
+<span class="line"><span style="color:#FF79C6">  fi</span></span>
+<span class="line"><span style="color:#FF79C6">  if</span><span style="color:#F8F8F2"> [ </span><span style="color:#E9F284">"</span><span style="color:#BD93F9">$draft</span><span style="color:#E9F284">"</span><span style="color:#FF79C6"> =</span><span style="color:#E9F284"> "</span><span style="color:#F1FA8C">first</span><span style="color:#E9F284">"</span><span style="color:#F8F8F2"> ]; </span><span style="color:#FF79C6">then</span></span>
+<span class="line"><span style="color:#8BE9FD">    echo</span><span style="color:#E9F284"> "</span><span style="color:#F1FA8C">First release of </span><span style="color:#BD93F9">$file</span><span style="color:#F1FA8C">, draft set to false and modDateTime removed</span><span style="color:#E9F284">"</span></span>
+<span class="line"><span style="color:#50FA7B">    cat</span><span style="color:#BD93F9"> $file</span><span style="color:#FF79C6"> |</span><span style="color:#50FA7B"> sed</span><span style="color:#E9F284"> "</span><span style="color:#F1FA8C">/---.*/,/---.*/s/^modDatetime:.*$/modDatetime:/</span><span style="color:#E9F284">"</span><span style="color:#FF79C6"> |</span><span style="color:#50FA7B"> sed</span><span style="color:#E9F284"> "</span><span style="color:#F1FA8C">/---.*/,/---.*/s/^draft:.*$/draft: false/</span><span style="color:#E9F284">"</span><span style="color:#FF79C6"> ></span><span style="color:#F1FA8C"> tmp</span></span>
+<span class="line"><span style="color:#50FA7B">    mv</span><span style="color:#F1FA8C"> tmp</span><span style="color:#BD93F9"> $file</span></span>
+<span class="line"><span style="color:#50FA7B">    git</span><span style="color:#F1FA8C"> add</span><span style="color:#BD93F9"> $file</span></span>
+<span class="line"><span style="color:#FF79C6">  fi</span></span>
+<span class="line"><span style="color:#FF79C6">done</span></span></code></pre>
+<p><code>git diff --cached --name-status</code> gets the files from git that have been staged for committing. The output looks like:</p>
+<pre class="astro-code dracula" style="background-color:#282A36;color:#F8F8F2; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#50FA7B">A</span><span style="color:#F1FA8C">       src/content/blog/setting-dates-via-git-hooks.md</span></span></code></pre>
+<p>The letter at the start denotes what action has been taken, in the above example the file has been added. Modified files have <code>M</code></p>
+<p>We pipe that output into the grep command where we are looking at each line to find that have been modified. The line needs to start with <code>M</code> (<code>^(M)</code>), have any number of characters after that (<code>.*</code>) and end with the <code>.md</code> file extension (<code>.(md)$</code>).This is going to filter out the lines that are not modified markdown files <code>egrep -i "^(M).*\.(md)$"</code>.</p>
+<hr>
+<h4 id="improvement---more-explicit">Improvement - More Explicit</h4>
+<p>This could be added to only look for files that we markdown files in the <code>blog</code> directory, as these are the only ones that will have the right frontmatter</p>
+<hr>
+<p>The regex will capture the two parts, the letter and the file path. We are going to pipe this list into a while loop to iterate over the matching lines and assign the letter to <code>a</code> and the path to <code>b</code>. We are going to ignore <code>a</code> for now.</p>
+<p>To know the draft staus of the file, we need its frontmatter. In the following code we are using <code>cat</code> to get the content of the file, then using <code>awk</code> to split the file on the frontmatter separator (<code>---</code>) and taking the second block (the fonmtmatter, the bit between the <code>---</code>). From here we are using <code>awk</code> again to find the draft key and print is value.</p>
+<pre class="astro-code dracula" style="background-color:#282A36;color:#F8F8F2; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#BD93F9">  filecontent</span><span style="color:#FF79C6">=</span><span style="color:#F1FA8C">$(</span><span style="color:#50FA7B">cat</span><span style="color:#E9F284"> "</span><span style="color:#BD93F9">$file</span><span style="color:#E9F284">"</span><span style="color:#F1FA8C">)</span></span>
+<span class="line"><span style="color:#BD93F9">  frontmatter</span><span style="color:#FF79C6">=</span><span style="color:#F1FA8C">$(</span><span style="color:#8BE9FD">echo</span><span style="color:#E9F284"> "</span><span style="color:#BD93F9">$filecontent</span><span style="color:#E9F284">"</span><span style="color:#FF79C6"> |</span><span style="color:#50FA7B"> awk</span><span style="color:#BD93F9"> -v</span><span style="color:#F1FA8C"> RS=</span><span style="color:#E9F284">'</span><span style="color:#F1FA8C">---</span><span style="color:#E9F284">'</span><span style="color:#E9F284"> '</span><span style="color:#F1FA8C">NR==2{print}</span><span style="color:#E9F284">'</span><span style="color:#F1FA8C">)</span></span>
+<span class="line"><span style="color:#BD93F9">  draft</span><span style="color:#FF79C6">=</span><span style="color:#F1FA8C">$(</span><span style="color:#8BE9FD">echo</span><span style="color:#E9F284"> "</span><span style="color:#BD93F9">$frontmatter</span><span style="color:#E9F284">"</span><span style="color:#FF79C6"> |</span><span style="color:#50FA7B"> awk</span><span style="color:#E9F284"> '</span><span style="color:#F1FA8C">/^draft: /{print $2}</span><span style="color:#E9F284">'</span><span style="color:#F1FA8C">)</span></span></code></pre>
+<p>Now we have the value for <code>draft</code> we are going to do 1 of 3 things, set the modDatetime to now (when draft is false <code>if [ "$draft" = "false" ]; then</code>), clear the modDatetime and set draft to false (when draft is set to first <code>if [ "$draft" = "first" ]; then</code>), or nothing (in any other case).</p>
+<p>The next part with the sed command is a bit magical to me as I don’t often use it, it was copied from <a href="https://mademistakes.com/notes/adding-last-modified-timestamps-with-git/">another blog post on doing something similar</a>. In essence, it is looking inside the frontmatter tags (<code>---</code>) of the file to find the <code>pubDatetime:</code> key, getting the full line and replacing it with the <code>pubDatetime: $(date -u "+%Y-%m-%dT%H:%M:%SZ")/"</code> same key again and the current datetime formatted correctly.</p>
+<p>This replacement is in the context of the whole file so we put that into a temporary file (<code>> tmp</code>), then we move (<code>mv</code>) the new file into the location of the old file, overwriting it. This is then added to git ready to be committed as if we made the change ourselves.</p>
+<hr>
+<h4 id="note">NOTE</h4>
+<p>For the <code>sed</code> to work the frontmatter needs to already have the <code>modDatetime</code> key in the frontmatter. There are some other changes you will need to make for the app to build with a blank date, see <a href="#empty-moddatetime-changes">further down</a></p>
+<hr>
+<h3 id="adding-the-date-for-new-files">Adding the Date for new files</h3>
+<p>Adding the date for a new file is the same process as above, but this time we are looking for lines that have been added (<code>A</code>) and we are going to replace the <code>pubDatetime</code> value.</p>
+<pre class="astro-code dracula" style="background-color:#282A36;color:#F8F8F2; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6272A4"># New files, add/update the pubDatetime</span></span>
+<span class="line"><span style="color:#50FA7B">git</span><span style="color:#F1FA8C"> diff</span><span style="color:#BD93F9"> --cached</span><span style="color:#BD93F9"> --name-status</span><span style="color:#FF79C6"> |</span><span style="color:#50FA7B"> egrep</span><span style="color:#BD93F9"> -i</span><span style="color:#E9F284"> "</span><span style="color:#F1FA8C">^(A).*\.(md)$</span><span style="color:#E9F284">"</span><span style="color:#FF79C6"> |</span><span style="color:#FF79C6"> while</span><span style="color:#8BE9FD"> read</span><span style="color:#F1FA8C"> a</span><span style="color:#F1FA8C"> b</span><span style="color:#F8F8F2">; </span><span style="color:#FF79C6">do</span></span>
+<span class="line"><span style="color:#50FA7B">  cat</span><span style="color:#BD93F9"> $b</span><span style="color:#FF79C6"> |</span><span style="color:#50FA7B"> sed</span><span style="color:#E9F284"> "</span><span style="color:#F1FA8C">/---.*/,/---.*/s/^pubDatetime:.*$/pubDatetime: $(</span><span style="color:#50FA7B">date</span><span style="color:#BD93F9"> -u</span><span style="color:#E9F284"> "</span><span style="color:#F1FA8C">+%Y-%m-%dT%H:%M:%SZ</span><span style="color:#E9F284">"</span><span style="color:#F1FA8C">)/</span><span style="color:#E9F284">"</span><span style="color:#FF79C6"> ></span><span style="color:#F1FA8C"> tmp</span></span>
+<span class="line"><span style="color:#50FA7B">  mv</span><span style="color:#F1FA8C"> tmp</span><span style="color:#BD93F9"> $b</span></span>
+<span class="line"><span style="color:#50FA7B">  git</span><span style="color:#F1FA8C"> add</span><span style="color:#BD93F9"> $b</span></span>
+<span class="line"><span style="color:#FF79C6">done</span></span></code></pre>
+<hr>
+<h4 id="improvement---only-loop-once">Improvement - Only Loop Once</h4>
+<p>We could use the <code>a</code> variable to switch inside the loop and either update the <code>modDatetime</code> or add the <code>pubDatetime</code> in one loop.</p>
+<hr>
+<h2 id="populating-the-frontmatter">Populating the frontmatter</h2>
+<p>If your IDE supports snippets then there is the option to create a custom snippet to populate the frontmatter.<a href="https://github.com/satnaing/astro-paper/pull/206">In AstroPaper v4 will come with one for VSCode by default.</a></p>
+<video autoplay muted controls plays-inline="true" class="border border-skin-line">
+  <source src="https://github.com/satnaing/astro-paper/assets/17761689/e13babbc-2d78-405d-8758-ca31915e41b0" type="video/mp4">
+</video>
+<h2 id="empty-moddatetime-changes">Empty <code>modDatetime</code> changes</h2>
+<p>To allow Astro to compile the markdown and do its thing, it needs to know what is expected in the frontmatter. It does this via the config in <code>src/content/config.ts</code></p>
+<p>To allow the key to be there with no value we need to edit line 10 to add the <code>.nullable()</code> function.</p>
+<pre class="astro-code dracula" style="background-color:#282A36;color:#F8F8F2; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#FF79C6">const</span><span style="color:#F8F8F2"> blog </span><span style="color:#FF79C6">=</span><span style="color:#50FA7B"> defineCollection</span><span style="color:#F8F8F2">({</span></span>
+<span class="line"><span style="color:#F8F8F2">  type</span><span style="color:#FF79C6">:</span><span style="color:#E9F284"> "</span><span style="color:#F1FA8C">content</span><span style="color:#E9F284">"</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#50FA7B">  schema</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> ({ </span><span style="color:#FFB86C;font-style:italic">image</span><span style="color:#F8F8F2"> }) </span><span style="color:#FF79C6">=></span></span>
+<span class="line"><span style="color:#F8F8F2">    z.</span><span style="color:#50FA7B">object</span><span style="color:#F8F8F2">({</span></span>
+<span class="line"><span style="color:#F8F8F2">      author</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> z.</span><span style="color:#50FA7B">string</span><span style="color:#F8F8F2">().</span><span style="color:#50FA7B">default</span><span style="color:#F8F8F2">(</span><span style="color:#BD93F9">SITE</span><span style="color:#F8F8F2">.author),</span></span>
+<span class="line"><span style="color:#F8F8F2">      pubDatetime</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> z.</span><span style="color:#50FA7B">date</span><span style="color:#F8F8F2">(),</span></span>
+<span class="line"><span style="color:#F8F8F2">-     modDatetime</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> z.</span><span style="color:#50FA7B">date</span><span style="color:#F8F8F2">().</span><span style="color:#50FA7B">optional</span><span style="color:#F8F8F2">(),</span></span>
+<span class="line"><span style="color:#F8F8F2">+     modDatetime</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> z.</span><span style="color:#50FA7B">date</span><span style="color:#F8F8F2">().</span><span style="color:#50FA7B">optional</span><span style="color:#F8F8F2">().</span><span style="color:#50FA7B">nullable</span><span style="color:#F8F8F2">(),</span></span>
+<span class="line"><span style="color:#F8F8F2">      title</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> z.</span><span style="color:#50FA7B">string</span><span style="color:#F8F8F2">(),</span></span>
+<span class="line"><span style="color:#F8F8F2">      featured</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> z.</span><span style="color:#50FA7B">boolean</span><span style="color:#F8F8F2">().</span><span style="color:#50FA7B">optional</span><span style="color:#F8F8F2">(),</span></span>
+<span class="line"><span style="color:#F8F8F2">      draft</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> z.</span><span style="color:#50FA7B">boolean</span><span style="color:#F8F8F2">().</span><span style="color:#50FA7B">optional</span><span style="color:#F8F8F2">(),</span></span>
+<span class="line"><span style="color:#F8F8F2">      tags</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> z.</span><span style="color:#50FA7B">array</span><span style="color:#F8F8F2">(z.</span><span style="color:#50FA7B">string</span><span style="color:#F8F8F2">()).</span><span style="color:#50FA7B">default</span><span style="color:#F8F8F2">([</span><span style="color:#E9F284">"</span><span style="color:#F1FA8C">others</span><span style="color:#E9F284">"</span><span style="color:#F8F8F2">]),</span></span>
+<span class="line"><span style="color:#F8F8F2">      ogImage</span><span style="color:#FF79C6">:</span><span style="color:#50FA7B"> image</span><span style="color:#F8F8F2">()</span></span>
+<span class="line"><span style="color:#F8F8F2">        .</span><span style="color:#50FA7B">refine</span><span style="color:#F8F8F2">(</span><span style="color:#FFB86C;font-style:italic">img</span><span style="color:#FF79C6"> =></span><span style="color:#F8F8F2"> img.width </span><span style="color:#FF79C6">>=</span><span style="color:#BD93F9"> 1200</span><span style="color:#FF79C6"> &#x26;&#x26;</span><span style="color:#F8F8F2"> img.height </span><span style="color:#FF79C6">>=</span><span style="color:#BD93F9"> 630</span><span style="color:#F8F8F2">, {</span></span>
+<span class="line"><span style="color:#F8F8F2">          message</span><span style="color:#FF79C6">:</span><span style="color:#E9F284"> "</span><span style="color:#F1FA8C">OpenGraph image must be at least 1200 X 630 pixels!</span><span style="color:#E9F284">"</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#F8F8F2">        })</span></span>
+<span class="line"><span style="color:#F8F8F2">        .</span><span style="color:#50FA7B">or</span><span style="color:#F8F8F2">(z.</span><span style="color:#50FA7B">string</span><span style="color:#F8F8F2">())</span></span>
+<span class="line"><span style="color:#F8F8F2">        .</span><span style="color:#50FA7B">optional</span><span style="color:#F8F8F2">(),</span></span>
+<span class="line"><span style="color:#F8F8F2">      description</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> z.</span><span style="color:#50FA7B">string</span><span style="color:#F8F8F2">(),</span></span>
+<span class="line"><span style="color:#F8F8F2">      canonicalURL</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> z.</span><span style="color:#50FA7B">string</span><span style="color:#F8F8F2">().</span><span style="color:#50FA7B">optional</span><span style="color:#F8F8F2">(),</span></span>
+<span class="line"><span style="color:#F8F8F2">      readingTime</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> z.</span><span style="color:#50FA7B">string</span><span style="color:#F8F8F2">().</span><span style="color:#50FA7B">optional</span><span style="color:#F8F8F2">(),</span></span>
+<span class="line"><span style="color:#F8F8F2">    }),</span></span>
+<span class="line"><span style="color:#F8F8F2">});</span></span></code></pre>
+<p>To stop the IDE complaining in the blog engine files I have also done the following:</p>
+<ol>
+<li>added <code>| null</code> to line 15 in <code>src/layouts/Layout.astro</code> so that it looks like</li>
+</ol>
+<pre class="astro-code dracula" style="background-color:#282A36;color:#F8F8F2; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#FF79C6">export</span><span style="color:#FF79C6"> interface</span><span style="color:#8BE9FD;font-style:italic"> Props</span><span style="color:#F8F8F2"> {</span></span>
+<span class="line"><span style="color:#F8F8F2">  title</span><span style="color:#FF79C6">?:</span><span style="color:#8BE9FD;font-style:italic"> string</span><span style="color:#F8F8F2">;</span></span>
+<span class="line"><span style="color:#F8F8F2">  author</span><span style="color:#FF79C6">?:</span><span style="color:#8BE9FD;font-style:italic"> string</span><span style="color:#F8F8F2">;</span></span>
+<span class="line"><span style="color:#F8F8F2">  description</span><span style="color:#FF79C6">?:</span><span style="color:#8BE9FD;font-style:italic"> string</span><span style="color:#F8F8F2">;</span></span>
+<span class="line"><span style="color:#F8F8F2">  ogImage</span><span style="color:#FF79C6">?:</span><span style="color:#8BE9FD;font-style:italic"> string</span><span style="color:#F8F8F2">;</span></span>
+<span class="line"><span style="color:#F8F8F2">  canonicalURL</span><span style="color:#FF79C6">?:</span><span style="color:#8BE9FD;font-style:italic"> string</span><span style="color:#F8F8F2">;</span></span>
+<span class="line"><span style="color:#F8F8F2">  pubDatetime</span><span style="color:#FF79C6">?:</span><span style="color:#8BE9FD;font-style:italic"> Date</span><span style="color:#F8F8F2">;</span></span>
+<span class="line"><span style="color:#F8F8F2">  modDatetime</span><span style="color:#FF79C6">?:</span><span style="color:#8BE9FD;font-style:italic"> Date</span><span style="color:#FF79C6"> |</span><span style="color:#8BE9FD;font-style:italic"> null</span><span style="color:#F8F8F2">;</span></span>
+<span class="line"><span style="color:#F8F8F2">}</span></span></code></pre>
+<!-- This needs to be 2 as it doesn't pick it up with the code block -->
+<ol start="2">
+<li>added <code>| null</code> to line 5 in <code>src/components/Datetime.tsx</code> so that it looks like</li>
+</ol>
+<pre class="astro-code dracula" style="background-color:#282A36;color:#F8F8F2; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#FF79C6">interface</span><span style="color:#8BE9FD;font-style:italic"> DatetimesProps</span><span style="color:#F8F8F2"> {</span></span>
+<span class="line"><span style="color:#F8F8F2">  pubDatetime</span><span style="color:#FF79C6">:</span><span style="color:#8BE9FD;font-style:italic"> string</span><span style="color:#FF79C6"> |</span><span style="color:#8BE9FD;font-style:italic"> Date</span><span style="color:#F8F8F2">;</span></span>
+<span class="line"><span style="color:#F8F8F2">  modDatetime</span><span style="color:#FF79C6">:</span><span style="color:#8BE9FD;font-style:italic"> string</span><span style="color:#FF79C6"> |</span><span style="color:#8BE9FD;font-style:italic"> Date</span><span style="color:#FF79C6"> |</span><span style="color:#8BE9FD;font-style:italic"> undefined</span><span style="color:#FF79C6"> |</span><span style="color:#8BE9FD;font-style:italic"> null</span><span style="color:#F8F8F2">;</span></span>
+<span class="line"><span style="color:#F8F8F2">}</span></span></code></pre> </article>  <ul class="flex gap-4 mb-4 mx-4 italic animate-flip-up py-12 justify-end"><a class="hover:underline underline-offset-2 transition-all flex items-center" href="/tags/docs" class="inline-block"> <span class="opacity-80">#</span> <span data-astro-transition-scope="astro-4acxdjum-4"> docs </span> </a><a class="hover:underline underline-offset-2 transition-all flex items-center" href="/tags/FAQ" class="inline-block"> <span class="opacity-80">#</span> <span data-astro-transition-scope="astro-4acxdjum-5"> FAQ </span> </a></ul> <div class="font-semibold text-2xl dark:text-teal-400 text-black mb-4">
+Recent Blog
+</div><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="relative rounded-md overflow-hidden group"><a href="/posts/how-to-configure-astropaper-theme" data-astro-transition-scope="astro-s645wb5z-2"><img src="https://user-images.githubusercontent.com/53733092/215771435-25408246-2309-4f8b-a781-1f3d93bdf0ec.png" class="object-cover w-full h-48 group-hover:scale-110 transition-transform"><p class="absolute inset-x-1 bottom-1 bg-gray-900/10 text-white truncate text-center" title="How to configure AstroPaper theme">How to configure AstroPaper theme</p></a></div><div class="relative rounded-md overflow-hidden group"><a href="/posts/how-to-add-a-new-social-icon" data-astro-transition-scope="astro-s645wb5z-3"><img src="https://user-images.githubusercontent.com/53733092/215771435-25408246-2309-4f8b-a781-1f3d93bdf0ec.png" class="object-cover w-full h-48 group-hover:scale-110 transition-transform"><p class="absolute inset-x-1 bottom-1 bg-gray-900/10 text-white truncate text-center" title="How to add a new Social Icon to AstroPaper">How to add a new Social Icon to AstroPaper</p></a></div></div> <button id="back-to-top" class="fixed bottom-4 right-4 bg-skin-base opacity-35 hover:opacity-100 text-teal-400 p-2 rounded-full shadow-lg hover:shadow-xl transition-all z-50"> <i class="i-mdi-arrow-up-circle-outline text-2xl"></i> </button>  <footer class="text-sm pt-32 text-center items-center flex gap-1 justify-center md:text-left pb-8 sm:pb-0"> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="underline underline-offset-2 pr-2">
+CC BY-NC-SA 4.0
+</a>
+2024 - PRESENT © Developer27149<a target="_blank" href="https://github.com/Developer27149" class="hidden md:inline-block"></a> <a href="https://twitter.com/miaocai0" class="i-mdi-twitter text-sky-500"></a> </footer> </body></html> <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const back = document.getElementById("_back_");
+    back.addEventListener("click", () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = window.location.origin;
+      }
+    });
+  });
+
+  function addHeadingLinks() {
+    let headings = Array.from(document.querySelectorAll("h2, h3, h4, h5, h6"));
+    for (let heading of headings) {
+      heading.classList.add("group");
+      let link = document.createElement("a");
+      link.innerText = "#";
+      link.className = "heading-link hidden group-hover:inline-block ml-2";
+      link.href = "#" + heading.id;
+      link.ariaHidden = "true";
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    let copyButtonLabel = "Copy";
+    let codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (let codeBlock of codeBlocks) {
+      codeBlock.classList.add("group");
+      let wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      let copyButton = document.createElement("button");
+      copyButton.className =
+        "bg-green-500 text-white absolute right-1 top-1 transition-all opacity-0 group-hover:opacity-100 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      let code = block.querySelector("code");
+      let text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+    document.addEventListener("scroll", () => {
+      let backToTopButton = document.querySelector("#back-to-top");
+      if (
+        document.body.scrollTop > 100 ||
+        document.documentElement.scrollTop > 100
+      ) {
+        backToTopButton.style.display = "block";
+      } else {
+        backToTopButton.style.display = "none";
+      }
+    });
+  }
+  backToTop();
+</script>
